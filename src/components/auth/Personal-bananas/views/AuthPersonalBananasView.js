@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import Gallery from "react-grid-gallery";
 import {Link} from "react-router-dom";
 
-class Personal_bananas extends Component {
+class AuthPersonalBananasView extends Component {
     render() {
         return (
             <div className="App">
@@ -27,4 +27,4 @@ class Personal_bananas extends Component {
         )
     }
 }
-export default Personal_bananas;
+export default AuthPersonalBananasView;

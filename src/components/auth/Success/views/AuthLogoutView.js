@@ -1,7 +1,7 @@
 import {Redirect} from "react-router-dom";
 import React, {Component} from "react";
 
-class Logout extends Component {
+class AuthLogoutView extends Component {
     render() {
         return (
             <Redirect to={{
@@ -11,4 +11,4 @@ class Logout extends Component {
         )
     }
 }
-export default Logout;
+export default AuthLogoutView;

@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import '../../../css/App.css';
 import axios from "axios";
-import Fail from "./views/Fail";
-import Success from "./views/Success";
-import Logout from "./views/Logout";
+import AuthFailView from "./views/AuthFailView";
+import AuthSuccessView from "./views/AuthSuccessView";
+import AuthLogoutView from "./views/AuthLogoutView";
 
-class Auth_success extends Component {
+class AuthSuccess extends Component {
 
     constructor(){
         super();
@@ -37,18 +37,18 @@ class Auth_success extends Component {
     render() {
         if (this.state.username===0) {
             return (
-                <Fail/>
+                <AuthFailView/>
             )
         } else if (this.state.redir===0) {
             return (
-                <Success username={this.state.username}
-                            logout={this.logout}/>
+                <AuthSuccessView username={this.state.username}
+                                 logout={this.logout}/>
             );
         } else if (this.state.redir=='logout') {
             return (
-                <Logout/>
+                <AuthLogoutView/>
             )
         }
     }
 }
-export default Auth_success;
+export default AuthSuccess;

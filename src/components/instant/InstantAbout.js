@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Link} from "react-router-dom";
 import '../../css/App.css';
 
-class About extends Component {
+class InstantAbout extends Component {
 
     render() {
         return (
@@ -23,4 +23,4 @@ class About extends Component {
         )
     }
 }
-export default About;
+export default InstantAbout;

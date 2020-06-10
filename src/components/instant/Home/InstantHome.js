@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import '../../../css/App.css';
-import {Form_register} from "../../form/Form_register";
-import {Form_login} from "../../form/Form_login";
-import Loading from "../../Loading-component";
-import Landing_page from "./views/Landing-page";
-import Home_redirect from "./views/Home_redirect";
+import {FormRegister} from "../../form/FormRegister";
+import {FormLogin} from "../../form/FormLogin";
+import Loading from "../../LoadingComponent";
+import InstantLandingPageView from "./views/InstantLandingPageView";
+import InstantHomeRedirectView from "./views/InstantHomeRedirectView";
 
-class Home extends Component {
+class InstantHome extends Component {
     constructor(props) {
         super(props)
 
@@ -106,14 +106,14 @@ class Home extends Component {
         if ( this.state.register ) {
             form_register = (
                 <div>
-                    <Form_register />
+                    <FormRegister />
                 </div>
             )
         } else form_register = (<div />)
 
         let form_login;
         if ( this.state.login ) {
-            form_login = (<Form_login/>)
+            form_login = (<FormLogin/>)
         } else form_login = (<div />)
 
         let logout_message = (<div />);
@@ -139,7 +139,7 @@ class Home extends Component {
 
 
         if (!this.state.redirect) return (
-            <Landing_page do_register={this.do_register}
+            <InstantLandingPageView do_register={this.do_register}
                           do_login={this.do_login}
                           fileChangedHandler={this.fileChangedHandler}
                           submit_loading={this.submit_loading}
@@ -152,11 +152,11 @@ class Home extends Component {
         );
         else if (this.state.redirect || !this.state.error) {
             return (
-                <Home_redirect prediction={this.state.prediction}
-                               img={this.state.imagePreviewUrl}/>
+                <InstantHomeRedirectView prediction={this.state.prediction}
+                                         img={this.state.imagePreviewUrl}/>
             )
         }
     }
 }
 
-export default Home;
+export default InstantHome;

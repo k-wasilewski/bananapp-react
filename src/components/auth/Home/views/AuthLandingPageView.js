@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 
-class Auth_landingPage extends Component {
+class AuthLandingPageView extends Component {
     render() {
         return (
             <div>
@@ -15,4 +15,4 @@ class Auth_landingPage extends Component {
         )
     }
 }
-export default Auth_landingPage;
+export default AuthLandingPageView;

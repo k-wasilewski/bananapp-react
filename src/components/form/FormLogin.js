@@ -1,14 +1,12 @@
 import React from 'react'
 import { Formiz, useForm } from '@formiz/core'
 import { isEmail } from '@formiz/validations' // Import some validations
-import { Form_field } from './Form_field'
+import { FormField } from './FormField'
 import axios from "axios";
 import {Redirect} from "react-router-dom";
 import { useState } from 'react'
 
-//LOGIN
-
-export const Form_login = () => {
+export const FormLogin = () => {
 
     const myForm = useForm();
 
@@ -47,7 +45,7 @@ export const Form_login = () => {
                     onSubmit={myForm.submit}
                 >
                     {error_msg}
-                    <Form_field
+                    <FormField
                         name="email"
                         label="E-mail: "
                         validations={[
@@ -57,7 +55,7 @@ export const Form_login = () => {
                             },
                         ]}
                     />
-                    <Form_field
+                    <FormField
                         name="password"
                         label="Password: "
                         type="password"

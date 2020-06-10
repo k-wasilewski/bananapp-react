@@ -1,9 +1,9 @@
 import React from 'react';
-import Loading from "../../Loading-component";
-import Auth_landingPage from "./views/Auth_landing-page";
-import Auth_redirectResults from "./views/Auth_redirectResults";
+import Loading from "../../LoadingComponent";
+import AuthLandingPageView from "./views/AuthLandingPageView";
+import AuthRedirectResultsView from "./views/AuthRedirectResultsView";
 
-class Auth_home extends React.Component {
+class AuthHome extends React.Component {
     constructor(props) {
         super(props);
 
@@ -100,18 +100,18 @@ class Auth_home extends React.Component {
         } else loading_component = (<div />);
 
         if (!this.state.redirect) return (
-            <Auth_landingPage fileChangedHandler={this.fileChangedHandler}
-                            submit_loading={this.submit_loading}
-                            loading_component={loading_component}
-                            error_msg={error_msg}
-                            $imagePreview={$imagePreview}/>
+            <AuthLandingPageView fileChangedHandler={this.fileChangedHandler}
+                                 submit_loading={this.submit_loading}
+                                 loading_component={loading_component}
+                                 error_msg={error_msg}
+                                 $imagePreview={$imagePreview}/>
         );
         else return (
-            <Auth_redirectResults prediction={this.state.prediction}
-                                  img={this.state.imagePreviewUrl}
-                                  username={this.props.username}/>
+            <AuthRedirectResultsView prediction={this.state.prediction}
+                                     img={this.state.imagePreviewUrl}
+                                     username={this.props.username}/>
         )
     }
 }
 
-export default Auth_home;
+export default AuthHome;

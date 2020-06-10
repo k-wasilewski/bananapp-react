@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {Redirect} from 'react-router-dom';
 
-class Home_redirect extends Component {
+class InstantHomeRedirectView extends Component {
     render() {
         return (
             <Redirect to={{
@@ -12,4 +12,4 @@ class Home_redirect extends Component {
         )
     }
 }
-export default Home_redirect;
+export default InstantHomeRedirectView;

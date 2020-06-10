@@ -1,7 +1,7 @@
 import React from 'react'
 import { useField } from '@formiz/core'
 
-export const Form_field = (props) => {
+export const FormField = (props) => {
     const {
         errorMessage,
         id,

@@ -1,22 +1,22 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import Home from "../components/instant/Home/Home";
-import Auth_success from "../components/auth/Success/Auth_success";
-import Results from "../components/instant/Results/Results";
-import Auth_results from "../components/auth/Results/Auth_results";
-import Auth_personalBananas from "../components/auth/Personal-bananas/Auth_personal-bananas";
-import About from "../components/instant/About";
+import InstantHome from "../components/instant/Home/InstantHome";
+import AuthSuccess from "../components/auth/Success/AuthSuccess";
+import InstantResults from "../components/instant/Results/InstantResults";
+import AuthResults from "../components/auth/Results/AuthResults";
+import AuthPersonalBananas from "../components/auth/Personal-bananas/AuthPersonalBananas";
+import InstantAbout from "../components/instant/InstantAbout";
 
 const Main = () => {
     return (
         <Switch>
-            <Route exact path='/' component={Home}></Route>
-            <Route exact path='/results' component={Results}></Route>
-            <Route exact path='/success' component={Auth_success}></Route>
-            <Route exact path='/auth/results' component={Auth_results}></Route>
-            <Route exact path='/auth/personalBananas' component={Auth_personalBananas}></Route>
-            <Route exact path='/about' component={About}></Route>
+            <Route exact path='/' component={InstantHome}></Route>
+            <Route exact path='/results' component={InstantResults}></Route>
+            <Route exact path='/success' component={AuthSuccess}></Route>
+            <Route exact path='/auth/results' component={AuthResults}></Route>
+            <Route exact path='/auth/personalBananas' component={AuthPersonalBananas}></Route>
+            <Route exact path='/about' component={InstantAbout}></Route>
         </Switch>
     );
 }

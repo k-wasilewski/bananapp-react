@@ -1,8 +1,8 @@
 import React from 'react';
 import axios from "axios";
-import Personal_bananas from "./views/Personal_bananas";
+import AuthPersonalBananasView from "./views/AuthPersonalBananasView";
 
-class Auth_personalBananas extends React.Component {
+class AuthPersonalBananas extends React.Component {
 
     constructor(){
         super();
@@ -149,11 +149,11 @@ class Auth_personalBananas extends React.Component {
     render() {
 
         return (
-            <Personal_bananas deleteImage={this.deleteImage}
-                            onCurrentImageChange={this.onCurrentImageChange}
-                            IMAGES={this.state.IMAGES}/>
+            <AuthPersonalBananasView deleteImage={this.deleteImage}
+                                     onCurrentImageChange={this.onCurrentImageChange}
+                                     IMAGES={this.state.IMAGES}/>
         )
     }
 }
 
-export default Auth_personalBananas;
+export default AuthPersonalBananas;

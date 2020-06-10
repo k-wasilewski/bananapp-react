@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {Link} from "react-router-dom";
 
-class Results_ok extends Component {
+class InstantResultsOkView extends Component {
     render() {
         return (
             <div className="App">
@@ -19,4 +19,4 @@ class Results_ok extends Component {
         )
     }
 }
-export default Results_ok;
+export default InstantResultsOkView;

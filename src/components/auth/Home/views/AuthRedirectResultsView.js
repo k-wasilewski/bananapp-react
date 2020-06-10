@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {Redirect} from "react-router-dom";
 
-class Auth_redirectResults extends Component {
+class AuthRedirectResultsView extends Component {
     render() {
         return (
             <Redirect to={{
@@ -13,4 +13,4 @@ class Auth_redirectResults extends Component {
         )
     }
 }
-export default Auth_redirectResults;
+export default AuthRedirectResultsView;

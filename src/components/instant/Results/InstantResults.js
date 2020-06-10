@@ -1,32 +1,21 @@
 import React from 'react';
-import {Link, Redirect} from "react-router-dom";
+import {Link} from "react-router-dom";
 import '../../../css/App.css';
-import axios from "axios";
-import Error from "./views/Error";
-import Auth_resultsView from "./views/Auth_resultsView";
+import InstantResultsErrorView from "./views/InstantResultsErrorView";
+import InstantResultsOkView from "./views/InstantResultsOkView";
 
-class Auth_results extends React.Component {
-
-    saveimg = (score, acc, filename, username, pic_link) => {
-        axios.post('http://localhost:8081/auth/saveimg',
-            "filename=" + filename[1] + "&"
-            + "score=" + score[1] + "&" + "acc=" +acc[1] +
-            "&" + "uname=" + username + "&" + "link=" + pic_link.split('+').join('plussign')
-        )};
-
+class InstantResults extends React.Component {
 
     render() {
         const img = this.props.location.state.img;
+
         const prediction = this.props.location.state.prediction;
-        const username = this.props.location.state.username;
 
         const scoreRegex = /score:(.*?),/;
         const accRegex = /accuracy:(0\.\d\d)/;
-        const filenameRegex = /filename:(.*?)END/
 
         const score = scoreRegex.exec(prediction);
         const accuracy = accRegex.exec(prediction);
-        const filename = filenameRegex.exec(prediction);
 
         var days = '[error]';
         switch(true) {
@@ -55,17 +44,15 @@ class Auth_results extends React.Component {
 
         if (!score || score==null || accuracy==null) {
             return (
-                <Error/>
+               <InstantResultsErrorView/>
             )
         } else {
-            this.saveimg(score, accuracy, filename, username, img);
-
             return (
-                <Auth_resultsView img={img}
-                                  days={days}
-                                  acc={accuracy[1]}/>
-            );
+                <InstantResultsOkView img={img}
+                                      days={days}
+                                      accuracy={accuracy}/>
+            )
         }
     }
 }
-export default Auth_results;
+export default InstantResults;

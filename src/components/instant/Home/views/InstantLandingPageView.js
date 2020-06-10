@@ -3,7 +3,7 @@ import logo_title from "../../../../jpg/logotitle.jpg";
 import {Link} from "react-router-dom";
 import React, {Component} from "react";
 
-class Landing_page extends Component {
+class InstantLandingPageView extends Component {
     render() {
         return (
             <div className="App">
@@ -38,4 +38,4 @@ class Landing_page extends Component {
     }
 }
 
-export default Landing_page;
+export default InstantLandingPageView;
