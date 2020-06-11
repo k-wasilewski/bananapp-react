@@ -8,8 +8,8 @@ class AuthResults extends React.Component {
 
     saveimg = (score, acc, filename, username, pic_link) => {
         axios.post('http://localhost:8081/auth/saveimg',
-            `filename= ${filename[1]}&score=${score[1]}&acc=${acc[1]}&
-            uname=${username}&link=${pic_link.split('+').join('plussign')}`
+            `filename=${filename[1]}&score=${score[1]}&acc=${acc[1]}
+            &uname=${username}&link=${pic_link.split('+').join('plussign')}`
         )};
 
 

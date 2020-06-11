@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from "axios";
 import AuthPersonalBananasView from "./views/AuthPersonalBananasView";
+import {setUsername} from "../../../redux/actions";
+import {connect} from "react-redux";
 
 class AuthPersonalBananas extends React.Component {
 
@@ -21,17 +23,10 @@ class AuthPersonalBananas extends React.Component {
     componentDidMount() {
         let $this = this;
 
-        axios.get('http://localhost:8081/auth/username')
-            .then((response) => {
-                let uname = response.data;
-                this.setState({
-                    username: uname
-                });
-            })
-
-        axios.get('http://localhost:8081/auth/files')
+        axios.get('http://localhost:8081/auth/files?username='+this.props.username)
             .then((response) => {
                 let imgs = response.data;
+                alert(imgs)
                 this.setState({
                         images: imgs
                     },
@@ -41,7 +36,7 @@ class AuthPersonalBananas extends React.Component {
     }
 
     getImgPred = (path) => {
-        var username = this.state.username;
+        var username = this.props.username;
         var $this = this;
 
         let regexFilename = new RegExp('^(.*?),,,');
@@ -123,7 +118,7 @@ class AuthPersonalBananas extends React.Component {
 
     deleteImage() {
         var $this = this;
-        var username = this.state.username;
+        var username = this.props.username;
 
         if (window.confirm(`Are you sure you want to delete banana number ${this.state.currentImage}?`)) {
             const filenameRegex = /\/(.*?).jpg/;
@@ -156,4 +151,14 @@ class AuthPersonalBananas extends React.Component {
     }
 }
 
-export default AuthPersonalBananas;
+function mapStateToProps(state) {
+    return {
+        username: state.setUsernameReducer.username,
+    };
+};
+
+const mapDispatchToProps = {
+    setUsername
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AuthPersonalBananas);
