@@ -18,7 +18,6 @@ export const FormLogin = () => {
             "username=" + values.email + "&" + "password=" + values.password
         ).then(function (response) {
             if (response.status === 200) {
-                alert(JSON.stringify(response));
                 setUsername(values.email);
                 setRedirect(response.data);
             }

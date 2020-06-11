@@ -26,7 +26,6 @@ class AuthPersonalBananas extends React.Component {
         axios.get('http://localhost:8081/auth/files?username='+this.props.username)
             .then((response) => {
                 let imgs = response.data;
-                alert(imgs)
                 this.setState({
                         images: imgs
                     },
