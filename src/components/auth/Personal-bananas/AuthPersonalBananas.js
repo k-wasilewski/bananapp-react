@@ -23,9 +23,10 @@ class AuthPersonalBananas extends React.Component {
     componentDidMount() {
         let $this = this;
 
-        axios.get('http://localhost:8081/auth/files?username='+this.props.username)
+        axios.get('http://localhost:8081/auth/files',
+            {withCredentials: true})
             .then((response) => {
-                let imgs = response.data;
+                let imgs = response.data
                 this.setState({
                         images: imgs
                     },
@@ -49,7 +50,8 @@ class AuthPersonalBananas extends React.Component {
 
         axios.post('http://localhost:8081/auth/imgpred',
             "filename=" + filename[1] + "&" +
-                "username=" + username
+                "username=" + username,
+            {withCredentials: true}
         ).then(function (response) {
             if (response.status === 200) {
                 const prediction = response.data;
@@ -152,7 +154,7 @@ class AuthPersonalBananas extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        username: state.setUsernameReducer.username,
+        username: state.setUsernameReducer.username
     };
 };
 

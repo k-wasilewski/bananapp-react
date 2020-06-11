@@ -13,13 +13,14 @@ export const FormLogin = () => {
     const [redirect, setRedirect] = useState(0);
     const [username, setUsername] = useState(0);
 
-    const handleSubmit = (values, event) => {
+    const handleSubmit = (values) => {
         axios.post('http://localhost:8081',
-            "username=" + values.email + "&" + "password=" + values.password
+            "username=" + values.email + "&" + "password=" + values.password,
+            {withCredentials: true}
         ).then(function (response) {
             if (response.status === 200) {
                 setUsername(values.email);
-                setRedirect(response.data);
+                setRedirect('success');
             }
         });
         axios.post('http://localhost:8082/auth/user',
