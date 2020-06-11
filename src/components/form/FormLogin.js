@@ -11,22 +11,20 @@ export const FormLogin = () => {
     const myForm = useForm();
 
     const [redirect, setRedirect] = useState(0);
+    const [username, setUsername] = useState(0);
 
     const handleSubmit = (values, event) => {
         axios.post('http://localhost:8081',
             "username=" + values.email + "&" + "password=" + values.password
         ).then(function (response) {
             if (response.status === 200) {
+                setUsername(values.email);
                 setRedirect(response.data);
             }
         });
         axios.post('http://localhost:8082/auth/user',
             "uname=" + values.email
-        ).then(function (response) {
-            if (response.status === 200) {
-                setRedirect(response.data);
-            }
-        });
+        );
     };
 
     let error_msg = (<div/>);
@@ -70,6 +68,10 @@ export const FormLogin = () => {
             </Formiz>
         );
     } else if (redirect == "success") {
-        return (<Redirect to='/success'/>);
+        return (<Redirect to={{
+            pathname: '/success',
+            state: {username: username}}}/>
+        );
     }
 };
+

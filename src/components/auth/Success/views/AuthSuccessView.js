@@ -1,6 +1,8 @@
 import React, {Component} from "react";
 import {Link} from "react-router-dom";
 import AuthHome from '../../Home/AuthHome';
+import {setUsername} from "../../../../redux/actions";
+import { connect } from 'react-redux';
 
 class AuthSuccessView extends Component {
     render() {
@@ -34,4 +36,15 @@ class AuthSuccessView extends Component {
         )
     }
 }
-export default AuthSuccessView;
+
+function mapStateToProps(state) {
+    return {
+        username: state.setUsernameReducer.username,
+    };
+};
+
+const mapDispatchToProps = {
+    setUsername
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AuthSuccessView);

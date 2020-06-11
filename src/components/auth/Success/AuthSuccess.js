@@ -4,6 +4,8 @@ import axios from "axios";
 import AuthFailView from "./views/AuthFailView";
 import AuthSuccessView from "./views/AuthSuccessView";
 import AuthLogoutView from "./views/AuthLogoutView";
+import { connect } from 'react-redux';
+import {setUsername} from "../../../redux/actions";
 
 class AuthSuccess extends Component {
 
@@ -16,13 +18,9 @@ class AuthSuccess extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:8081/auth/username')
-            .then((response) => {
-                let uname = response.data;
-                this.setState({
-                    username: uname
-                });
-            })
+        if (this.props.location.state!==undefined) this.props.setUsername(
+            this.props.location.state.username
+        );
     }
 
     logout = () => {
@@ -35,7 +33,7 @@ class AuthSuccess extends Component {
     }
 
     render() {
-        if (this.state.username===0) {
+        if (this.props.username===0) {
             return (
                 <AuthFailView/>
             )
@@ -51,4 +49,15 @@ class AuthSuccess extends Component {
         }
     }
 }
-export default AuthSuccess;
+
+function mapStateToProps(state) {
+    return {
+        username: state.setUsernameReducer.username,
+    };
+};
+
+const mapDispatchToProps = {
+    setUsername
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AuthSuccess);

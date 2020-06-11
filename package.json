@@ -10,8 +10,11 @@
     "react-dom": "16.8.0",
     "react-grid-gallery": "^0.5.5",
     "react-loadingg": "^1.7.2",
+    "react-redux": "^7.2.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "1.1.4"
+    "react-scripts": "1.1.4",
+    "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0"
   },
   "scripts": {
     "start": "PORT=8083 react-scripts start",
