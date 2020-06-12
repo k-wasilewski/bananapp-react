@@ -27,9 +27,11 @@ class AuthSuccess extends Component {
         axios.get('http://localhost:8081/logout',
             {withCredentials: true})
             .then((response) => {
-                this.setState({
-                    redir: 'logout'
-                });
+                if (response.data==='logoutsuccess') {
+                    this.setState({
+                        redir: 'logout'
+                    });
+                }
             })
     }
 

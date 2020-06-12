@@ -26,11 +26,6 @@ class AuthSuccessView extends Component {
                     <button variant="outlined" onClick={this.props.logout}>
                         Logout
                     </button>
-                    <Link to="/">
-                        <button variant="outlined">
-                            Back
-                        </button>
-                    </Link>
                 </header>
             </div>
         )
