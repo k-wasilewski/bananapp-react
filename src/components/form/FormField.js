@@ -16,7 +16,7 @@ export const FormField = (props) => {
     return (
         <div className={`demo-form-group ${(showError) ? 'is-error' : ''}`}>
             <label
-                className="demo-label"
+                className='demo-label'
                 htmlFor={id}
             >
                 { label }
@@ -26,7 +26,7 @@ export const FormField = (props) => {
                 id={id}
                 type={type || 'text'}
                 value={value || ''}
-                className="demo-input"
+                className='demo-input'
                 onChange={e => setValue(e.target.value)}
                 onBlur={() => setIsTouched(true)}
                 aria-invalid={showError}
@@ -34,7 +34,7 @@ export const FormField = (props) => {
                 aria-describedby={showError ? `${id}-error` : null}
             />
             {showError && (
-                <div id={`${id}-error`} className="demo-form-feedback">
+                <div id={`${id}-error`} className='demo-form-feedback'>
                     { errorMessage }
                 </div>
             )}

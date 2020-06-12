@@ -2,7 +2,7 @@ import React from 'react'
 import { Formiz, useForm } from '@formiz/core'
 import { isEmail } from '@formiz/validations' // Import some validations
 import { FormField } from './FormField' // Import your field
-import axios from "axios";
+import axios from 'axios';
 import { useState } from 'react'
 
 export const FormRegister = () => {
@@ -37,8 +37,8 @@ export const FormRegister = () => {
                 onSubmit={myForm.submit}
             >
                 <FormField
-                    name="email"
-                    label="E-mail: "
+                    name='email'
+                    label='E-mail: '
                     validations={[
                         {
                             rule: isEmail(),
@@ -47,14 +47,14 @@ export const FormRegister = () => {
                     ]}
                 />
                 <FormField
-                    name="password"
-                    label="Password: "
-                    type="password"
+                    name='password'
+                    label='Password: '
+                    type='password'
                 />
                 <FormField
-                    name="passwordConfirm"
-                    label="Confirm password: "
-                    type="password"
+                    name='passwordConfirm'
+                    label='Confirm password: '
+                    type='password'
                     validations={[
                         {
                             rule: (value) => myForm.values.password === value,
@@ -64,7 +64,7 @@ export const FormRegister = () => {
                     ]}
                 />
                 <button
-                    type="submit"
+                    type='submit'
                     disabled={!myForm.isValid}
                 >
                     Submit

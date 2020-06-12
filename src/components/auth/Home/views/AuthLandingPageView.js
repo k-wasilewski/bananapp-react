@@ -1,12 +1,12 @@
-import React, {Component} from "react";
+import React, {Component} from 'react';
 
 class AuthLandingPageView extends Component {
     render() {
         return (
             <div>
                 <header>
-                    <input type="file" name="avatar" onChange={this.props.fileChangedHandler} />
-                    <button type="button" onClick={this.props.submit_loading} > Upload </button>
+                    <input type='file' name='avatar' onChange={this.props.fileChangedHandler} />
+                    <button type='button' onClick={this.props.submit_loading} > Upload </button>
                     { this.props.loading_component }
                     { this.props.error_msg }
                     { this.props.$imagePreview }

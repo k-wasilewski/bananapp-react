@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import '../../../css/App.css';
-import {FormRegister} from "../../form/FormRegister";
-import {FormLogin} from "../../form/FormLogin";
-import Loading from "../../LoadingComponent";
-import InstantLandingPageView from "./views/InstantLandingPageView";
-import InstantHomeRedirectView from "./views/InstantHomeRedirectView";
+import {FormRegister} from '../../form/FormRegister';
+import {FormLogin} from '../../form/FormLogin';
+import Loading from '../../LoadingComponent';
+import InstantLandingPageView from './views/InstantLandingPageView';
+import InstantHomeRedirectView from './views/InstantHomeRedirectView';
 
 class InstantHome extends Component {
     constructor(props) {
@@ -82,7 +82,7 @@ class InstantHome extends Component {
                     redirect: true
                 });
             }
-            request.open("POST", "http://localhost:8082/image", true);
+            request.open('POST', 'http://localhost:8082/image', true);
             request.send(fd);
         } else {
             this.setState({
@@ -97,9 +97,9 @@ class InstantHome extends Component {
     }
 
     render() {
-        let imagePreview = (<div className="previewText image-container">Select a jpg image (max filesize 1 MB) to check your banana</div>);
+        let imagePreview = (<div className='previewText image-container'>Select a jpg image (max filesize 1 MB) to check your banana</div>);
         if (this.state.imagePreviewUrl) {
-            imagePreview = (<div className="image-container" ><img src={this.state.imagePreviewUrl} alt="icon" width="200" /> </div>);
+            imagePreview = (<div className='image-container' ><img src={this.state.imagePreviewUrl} alt='icon' width='200' /> </div>);
         }
 
         let form_register;

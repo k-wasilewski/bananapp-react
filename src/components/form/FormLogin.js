@@ -2,8 +2,8 @@ import React from 'react'
 import { Formiz, useForm } from '@formiz/core'
 import { isEmail } from '@formiz/validations' // Import some validations
 import { FormField } from './FormField'
-import axios from "axios";
-import {Redirect} from "react-router-dom";
+import axios from 'axios';
+import {Redirect} from 'react-router-dom';
 import { useState } from 'react'
 
 export const FormLogin = () => {
@@ -24,7 +24,7 @@ export const FormLogin = () => {
             }
         });
         axios.post('http://localhost:8082/auth/user',
-            "uname=" + values.email
+            'uname=' + values.email
         );
     };
 
@@ -45,8 +45,8 @@ export const FormLogin = () => {
                 >
                     {error_msg}
                     <FormField
-                        name="email"
-                        label="E-mail: "
+                        name='email'
+                        label='E-mail: '
                         validations={[
                             {
                                 rule: isEmail(),
@@ -55,12 +55,12 @@ export const FormLogin = () => {
                         ]}
                     />
                     <FormField
-                        name="password"
-                        label="Password: "
-                        type="password"
+                        name='password'
+                        label='Password: '
+                        type='password'
                     />
                     <button
-                        type="submit"
+                        type='submit'
                         disabled={!myForm.isValid}
                     >
                         Submit
@@ -68,7 +68,7 @@ export const FormLogin = () => {
                 </form>
             </Formiz>
         );
-    } else if (redirect == "success") {
+    } else if (redirect == 'success') {
         return (<Redirect to={{
             pathname: '/success',
             state: {username: username}}}/>

@@ -1,8 +1,8 @@
 import React from 'react';
-import axios from "axios";
-import AuthPersonalBananasView from "./views/AuthPersonalBananasView";
-import {setUsername} from "../../../redux/actions";
-import {connect} from "react-redux";
+import axios from 'axios';
+import AuthPersonalBananasView from './views/AuthPersonalBananasView';
+import {setUsername} from '../../../redux/actions';
+import {connect} from 'react-redux';
 
 class AuthPersonalBananas extends React.Component {
 
@@ -67,30 +67,30 @@ class AuthPersonalBananas extends React.Component {
 
                 switch(true) {
                     case score[1]==1.0:
-                        days="1 day";
+                        days='1 day';
                         break;
                     case score[1]==2.0:
-                        days="2 days";
+                        days='2 days';
                         break;
                     case score[1]==3.0:
-                        days="3 days";
+                        days='3 days';
                         break;
                     case score[1]==4.0:
-                        days="4 days";
+                        days='4 days';
                         break;
                     case score[1]==5.0:
-                        days="5 days";
+                        days='5 days';
                         break;
                     case score[1]==6.0:
-                        days="6 days";
+                        days='6 days';
                         break;
                     case score[1]==7.0:
-                        days="7 days";
+                        days='7 days';
                         break;
                 }
 
                 $this.setState({
-                    pred: days+" for "+Number((accuracy[1]*100).toFixed(2)) +"%"
+                    pred: days+' for '+Number((accuracy[1]*100).toFixed(2)) +'%'
                 }, function() { $this.IMAGESpush(url[1]) } );
             }
         });

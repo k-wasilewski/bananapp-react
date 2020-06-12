@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import '../../../css/App.css';
-import axios from "axios";
-import AuthFailView from "./views/AuthFailView";
-import AuthSuccessView from "./views/AuthSuccessView";
-import AuthLogoutView from "./views/AuthLogoutView";
+import axios from 'axios';
+import AuthFailView from './views/AuthFailView';
+import AuthSuccessView from './views/AuthSuccessView';
+import AuthLogoutView from './views/AuthLogoutView';
 import { connect } from 'react-redux';
-import {setUsername} from "../../../redux/actions";
+import {setUsername} from '../../../redux/actions';
 
 class AuthSuccess extends Component {
 

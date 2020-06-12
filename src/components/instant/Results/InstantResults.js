@@ -1,8 +1,8 @@
 import React from 'react';
-import {Link} from "react-router-dom";
+import {Link} from 'react-router-dom';
 import '../../../css/App.css';
-import InstantResultsErrorView from "./views/InstantResultsErrorView";
-import InstantResultsOkView from "./views/InstantResultsOkView";
+import InstantResultsErrorView from './views/InstantResultsErrorView';
+import InstantResultsOkView from './views/InstantResultsOkView';
 
 class InstantResults extends React.Component {
 
@@ -20,25 +20,25 @@ class InstantResults extends React.Component {
         var days = '[error]';
         switch(true) {
             case score[1]==1.0:
-                days="1 day";
+                days='1 day';
                 break;
             case score[1]==2.0:
-                days="2 days";
+                days='2 days';
                 break;
             case score[1]==3.0:
-                days="3 days";
+                days='3 days';
                 break;
             case score[1]==4.0:
-                days="4 days";
+                days='4 days';
                 break;
             case score[1]==5.0:
-                days="5 days";
+                days='5 days';
                 break;
             case score[1]==6.0:
-                days="6 days";
+                days='6 days';
                 break;
             case score[1]==7.0:
-                days="7 days";
+                days='7 days';
                 break;
         }
 

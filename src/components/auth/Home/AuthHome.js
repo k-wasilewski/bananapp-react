@@ -1,7 +1,7 @@
 import React from 'react';
-import Loading from "../../LoadingComponent";
-import AuthLandingPageView from "./views/AuthLandingPageView";
-import AuthRedirectResultsView from "./views/AuthRedirectResultsView";
+import Loading from '../../LoadingComponent';
+import AuthLandingPageView from './views/AuthLandingPageView';
+import AuthRedirectResultsView from './views/AuthRedirectResultsView';
 
 class AuthHome extends React.Component {
     constructor(props) {
@@ -46,7 +46,7 @@ class AuthHome extends React.Component {
                     redirect: true
                 });
             }
-            request.open("POST", `http://localhost:8082/auth/image?uname=${this.props.username}`, true);
+            request.open('POST', `http://localhost:8082/auth/image?uname=${this.props.username}`, true);
             request.send(fd);
         } else {
             this.setState({
@@ -85,9 +85,9 @@ class AuthHome extends React.Component {
             error_msg = (<div>File is too big</div>)
         } else error_msg = (<div/>);
 
-        let $imagePreview = (<div className="previewText image-container">Select a jpg image to add a banana</div>);
+        let $imagePreview = (<div className='previewText image-container'>Select a jpg image to add a banana</div>);
         if (this.state.imagePreviewUrl) {
-            $imagePreview = (<div className="image-container" ><img src={this.state.imagePreviewUrl} alt="icon" width="200" /> </div>);
+            $imagePreview = (<div className='image-container' ><img src={this.state.imagePreviewUrl} alt='icon' width='200' /> </div>);
         }
 
         let loading_component;

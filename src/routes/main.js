@@ -1,12 +1,12 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import InstantHome from "../components/instant/Home/InstantHome";
-import AuthSuccess from "../components/auth/Success/AuthSuccess";
-import InstantResults from "../components/instant/Results/InstantResults";
-import AuthResults from "../components/auth/Results/AuthResults";
-import AuthPersonalBananas from "../components/auth/Personal-bananas/AuthPersonalBananas";
-import InstantAbout from "../components/instant/InstantAbout";
+import InstantHome from '../components/instant/Home/InstantHome';
+import AuthSuccess from '../components/auth/Success/AuthSuccess';
+import InstantResults from '../components/instant/Results/InstantResults';
+import AuthResults from '../components/auth/Results/AuthResults';
+import AuthPersonalBananas from '../components/auth/Personal-bananas/AuthPersonalBananas';
+import InstantAbout from '../components/instant/InstantAbout';
 
 const Main = () => {
     return (
