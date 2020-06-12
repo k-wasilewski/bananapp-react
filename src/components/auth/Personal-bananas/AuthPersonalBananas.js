@@ -49,8 +49,7 @@ class AuthPersonalBananas extends React.Component {
 
 
         axios.post('http://localhost:8081/auth/imgpred',
-            "filename=" + filename[1] + "&" +
-                "username=" + username,
+            `filename=${filename[1]}&username=${username}`,
             {withCredentials: true}
         ).then(function (response) {
             if (response.status === 200) {
@@ -126,8 +125,8 @@ class AuthPersonalBananas extends React.Component {
             const filename = filenameRegex.exec(this.state.images[this.state.currentImage]);
 
             axios.post('http://localhost:8081/auth/del',
-                "filename=" + filename + "&" +
-                "username=" + username
+                `filename=${filename}&username=${username}`,
+                {withCredentials: true}
             );
 
             var images = this.state.IMAGES.slice();

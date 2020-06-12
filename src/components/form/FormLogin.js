@@ -15,7 +15,7 @@ export const FormLogin = () => {
 
     const handleSubmit = (values) => {
         axios.post('http://localhost:8081',
-            "username=" + values.email + "&" + "password=" + values.password,
+            `username=${values.email}&password=${values.password}`,
             {withCredentials: true}
         ).then(function (response) {
             if (response.status === 200) {

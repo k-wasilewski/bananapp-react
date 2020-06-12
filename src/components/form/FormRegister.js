@@ -11,7 +11,7 @@ export const FormRegister = () => {
 
     const handleSubmit = (values) => {
         axios.post('http://localhost:8081/create-user',
-            "username=" + values.email + "&" + "password=" + values.password
+            `username=${values.email}&password=${values.password}`
         ).then(function (response) {
             if (response.status === 200) {
                 setRedirect(response.data);
