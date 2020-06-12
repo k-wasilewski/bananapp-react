@@ -13,7 +13,9 @@ class AuthPersonalBananas extends React.Component {
             images: 0,
             pred: 0,
             IMAGES: [],
-            currentImage: 0
+            currentImage: 0,
+
+            shouldGalleryOpen: true
         }
         this.imgList = this.imgList.bind(this);
         this.deleteImage = this.deleteImage.bind(this);
@@ -129,7 +131,8 @@ class AuthPersonalBananas extends React.Component {
             var images = this.state.IMAGES.slice();
             images.splice(this.state.currentImage, 1)
             this.setState({
-                IMAGES: images
+                IMAGES: images,
+                shouldGalleryOpen: false
             });
         }
     }
@@ -141,7 +144,8 @@ class AuthPersonalBananas extends React.Component {
     render() {
 
         return (
-            <AuthPersonalBananasView deleteImage={this.deleteImage}
+            <AuthPersonalBananasView shouldGalleryOpen = {this.state.shouldGalleryOpen}
+                                     deleteImage={this.deleteImage}
                                      onCurrentImageChange={this.onCurrentImageChange}
                                      IMAGES={this.state.IMAGES}/>
         )

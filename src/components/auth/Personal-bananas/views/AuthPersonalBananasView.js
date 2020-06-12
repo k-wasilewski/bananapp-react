@@ -4,6 +4,14 @@ import {Link} from "react-router-dom";
 
 class AuthPersonalBananasView extends Component {
     render() {
+        let myGallery;
+        if (this.props.shouldGalleryOpen) {
+            myGallery = <Gallery images={this.props.IMAGES}
+                customControls={[<button key="deleteImage" onClick={this.props.deleteImage}>Delete banana</button>]}
+                currentImageWillChange={this.props.onCurrentImageChange}
+            />
+        } else myGallery = <div/>
+
         return (
             <div className="App">
                 <div style={{
@@ -11,10 +19,7 @@ class AuthPersonalBananasView extends Component {
                     minHeight: "1px",
                     width: "100%",
                     overflow: "auto"}}>
-                    <Gallery images={this.props.IMAGES}
-                             customControls={[<button key="deleteImage" onClick={this.props.deleteImage}>Delete banana</button>]}
-                             currentImageWillChange={this.props.onCurrentImageChange}
-                    />
+                    {myGallery}
                 </div>
                 <div className="App-header">
                     <Link to="/success">
