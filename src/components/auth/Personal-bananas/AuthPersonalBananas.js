@@ -104,8 +104,6 @@ class AuthPersonalBananas extends React.Component {
         const newIMAGE = {
             src: `${path}`,
             thumbnail: `${path}`,
-            //thumbnailWidth: 200,
-            //thumbnailHeight: 200,
             caption: $this.state.pred,
             tags: [{value: $this.state.pred, title: $this.state.pred}]
         };

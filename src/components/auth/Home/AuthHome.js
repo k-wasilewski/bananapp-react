@@ -92,7 +92,7 @@ class AuthHome extends React.Component {
             error_msg = (<div>Error uploading file to server</div>)
         } else error_msg = (<div/>);
 
-        let $imagePreview = (<div className='previewText image-container'>Select a jpg image to add a banana</div>);
+        let $imagePreview = (<div className='previewText image-container'>Select a jpg image (max filesize 1 MB) to add a banana</div>);
         if (this.state.imagePreviewUrl) {
             $imagePreview = (<div className='image-container' ><img src={this.state.imagePreviewUrl} alt='icon' width='200' /> </div>);
         }
