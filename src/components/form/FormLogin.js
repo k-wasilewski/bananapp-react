@@ -68,7 +68,7 @@ export const FormLogin = () => {
                 </form>
             </Formiz>
         );
-    } else if (redirect == 'success') {
+    } else if (redirect === 'success') {
         return (<Redirect to={{
             pathname: '/success',
             state: {username: username}}}/>

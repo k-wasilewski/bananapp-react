@@ -1,5 +1,4 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
 import '../../../css/App.css';
 import InstantResultsErrorView from './views/InstantResultsErrorView';
 import InstantResultsOkView from './views/InstantResultsOkView';
@@ -39,6 +38,9 @@ class InstantResults extends React.Component {
                 break;
             case score[1]==='7.0':
                 days='7 days';
+                break;
+            default:
+                days='[error]';
                 break;
         }
 

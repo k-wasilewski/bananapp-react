@@ -45,7 +45,7 @@ class AuthSuccess extends Component {
                 <AuthSuccessView username={this.state.username}
                                  logout={this.logout}/>
             );
-        } else if (this.state.redir=='logout') {
+        } else if (this.state.redir==='logout') {
             return (
                 <AuthLogoutView/>
             )
