@@ -77,10 +77,17 @@ class InstantHome extends Component {
 
             var $this = this;
             request.onload = function() {
-                $this.setState({
-                    prediction: request.response,
-                    redirect: true
-                });
+                if (request.response==0) {
+                    $this.setState({
+                        error: true,
+                        loading: false
+                    })
+                } else {
+                    $this.setState({
+                        prediction: request.response,
+                        redirect: true
+                    });
+                }
             }
             request.open('POST', 'http://localhost:8082/image', true);
             request.send(fd);
@@ -134,7 +141,7 @@ class InstantHome extends Component {
 
         let error_msg;
         if (this.state.error) {
-            error_msg = (<div>File is too big</div>)
+            error_msg = (<div>Error uploading file to server</div>)
         } else error_msg = (<div/>);
 
 
