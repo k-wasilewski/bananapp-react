@@ -106,8 +106,6 @@ class AuthPersonalBananas extends React.Component {
     }
 
     imgList = () => {
-        var $this = this;
-        const IMAGES = [];
         const imgpaths = this.state.images;
 
         for (let i = 0; i < imgpaths.length; i++) {
@@ -117,12 +115,11 @@ class AuthPersonalBananas extends React.Component {
     };
 
     deleteImage() {
-        var $this = this;
         var username = this.props.username;
 
-        if (window.confirm(`Are you sure you want to delete banana number ${this.state.currentImage}?`)) {
-            const filenameRegex = /\/(.*?).jpg/;
-            const filename = filenameRegex.exec(this.state.images[this.state.currentImage]);
+        if (window.confirm(`Are you sure you want to delete banana number ${this.state.currentImage+1}?`)) {
+            const filenameRegex = /(.*?).jpg/;
+            const filename = filenameRegex.exec(this.state.images[this.state.currentImage])[0];
 
             axios.post('http://localhost:8081/auth/del',
                 `filename=${filename}&username=${username}`,
