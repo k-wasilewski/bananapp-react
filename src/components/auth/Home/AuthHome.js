@@ -41,10 +41,17 @@ class AuthHome extends React.Component {
 
             var $this = this;
             request.onload = function() {
-                $this.setState({
-                    prediction: request.response,
-                    redirect: true
-                });
+                if (request.response==0) {
+                    $this.setState({
+                        error: true,
+                        loading: false
+                    })
+                } else {
+                    $this.setState({
+                        prediction: request.response,
+                        redirect: true
+                    });
+                }
             }
             request.open('POST', `http://localhost:8082/auth/image?uname=${this.props.username}`, true);
             request.send(fd);
@@ -82,7 +89,7 @@ class AuthHome extends React.Component {
     render() {
         let error_msg;
         if (this.state.error) {
-            error_msg = (<div>File is too big</div>)
+            error_msg = (<div>Error uploading file to server</div>)
         } else error_msg = (<div/>);
 
         let $imagePreview = (<div className='previewText image-container'>Select a jpg image to add a banana</div>);
