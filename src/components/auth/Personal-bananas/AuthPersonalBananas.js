@@ -66,25 +66,25 @@ class AuthPersonalBananas extends React.Component {
                 var days = '[error]';
 
                 switch(true) {
-                    case score[1]==1.0:
+                    case score[1]==='1.0':
                         days='1 day';
                         break;
-                    case score[1]==2.0:
+                    case score[1]==='2.0':
                         days='2 days';
                         break;
-                    case score[1]==3.0:
+                    case score[1]==='3.0':
                         days='3 days';
                         break;
-                    case score[1]==4.0:
+                    case score[1]==='4.0':
                         days='4 days';
                         break;
-                    case score[1]==5.0:
+                    case score[1]==='5.0':
                         days='5 days';
                         break;
-                    case score[1]==6.0:
+                    case score[1]==='6.0':
                         days='6 days';
                         break;
-                    case score[1]==7.0:
+                    case score[1]==='7.0':
                         days='7 days';
                         break;
                 }
@@ -132,7 +132,11 @@ class AuthPersonalBananas extends React.Component {
             images.splice(this.state.currentImage, 1)
             this.setState({
                 IMAGES: images,
-                shouldGalleryOpen: false
+                currentImage: 0
+            }, () => {
+                if (this.state.IMAGES.length===0) this.setState({
+                    shouldGalleryOpen: false
+                })
             });
         }
     }

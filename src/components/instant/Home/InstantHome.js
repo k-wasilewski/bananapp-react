@@ -68,7 +68,7 @@ class InstantHome extends Component {
     }
 
     submit = () => {
-        if (this.state.selectedFile!=null) {
+        if (this.state.selectedFile!==null) {
             var fd = new FormData();
 
             fd.append('file', this.state.selectedFile);

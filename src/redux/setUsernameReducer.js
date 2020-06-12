@@ -13,6 +13,6 @@ export default function setUsernameReducer(state = initialState, action) {
             };
         default:
             return state;
-    };
+    }
 };
 

@@ -29,11 +29,11 @@ export const FormLogin = () => {
     };
 
     let error_msg = (<div/>);
-    if (redirect != 'success' && redirect != 0) {
+    if (redirect !== 'success' && redirect !== 0) {
         error_msg = (<div>Login failed</div>)
     }
 
-    if (redirect != 'success') {
+    if (redirect !== 'success') {
         return (
             <Formiz
                 connect={myForm}
