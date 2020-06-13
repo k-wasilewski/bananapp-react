@@ -95,10 +95,11 @@ class AuthPersonalBananas extends React.Component {
 
         if (window.confirm(`Are you sure you want to delete banana number ${this.state.currentImage+1}?`)) {
             const filenameRegex = /(.*?).jpg/;
-            const filename = filenameRegex.exec(this.state.images[this.state.currentImage])[0];
+            const filename = filenameRegex.exec(this.state.images[this.state.currentImage]);
+            alert(filename)
 
             axios.post('http://localhost:8081/auth/del',
-                `filename=${filename}&username=${username}`,
+                `filename=${filename[0]}&username=${username}`,
                 {withCredentials: true}
             );
 
