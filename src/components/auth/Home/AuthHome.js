@@ -7,20 +7,20 @@ class AuthHome extends React.Component {
     constructor(props) {
         super(props);
 
+        this.state =  {
+            selectedFile: null,
+            imagePreviewUrl: null,
+            prediction: null,
+            redirect: false,
+            loading: false,
+            error: false
+        };
+
         this.fileChangedHandler = this.fileChangedHandler.bind(this)
-        this.submit_loading = this.submit_loading.bind(this)
+        this.submitLoading = this.submitLoading.bind(this)
     }
 
-    state =  {
-        selectedFile: null,
-        imagePreviewUrl: null,
-        prediction: null,
-        redirect: false,
-        loading: false,
-        error: false
-    };
-
-    submit_loading = () => {
+    submitLoading = () => {
         this.loading();
         setTimeout( () => {
             this.submit();
@@ -34,12 +34,11 @@ class AuthHome extends React.Component {
     submit = () => {
         if (this.state.selectedFile!==null) {
             var fd = new FormData();
+            var $this = this;
+            var request = new XMLHttpRequest();
 
             fd.append('file', this.state.selectedFile);
 
-            var request = new XMLHttpRequest();
-
-            var $this = this;
             request.onload = function() {
                 if (request.response==0) {
                     $this.setState({
@@ -87,37 +86,38 @@ class AuthHome extends React.Component {
     }
 
     render() {
-        let error_msg;
-        if (this.state.error) {
-            error_msg = (<div>Error uploading file to server</div>)
-        } else error_msg = (<div/>);
+        const errorMsg = this.state.error ? (<div>Error uploading file to server</div>) : (<div/>);
 
-        let $imagePreview = (<div className='previewText image-container'>Select a jpg image (max filesize 1 MB) to add a banana</div>);
-        if (this.state.imagePreviewUrl) {
-            $imagePreview = (<div className='image-container' ><img src={this.state.imagePreviewUrl} alt='icon' width='200' /> </div>);
+        const $imagePreview = this.state.imagePreviewUrl ?
+            (<div className='image-container' >
+                <img src={this.state.imagePreviewUrl} alt='icon' width='200' />
+            </div>)
+                :
+            (<div className='previewText image-container'>
+                Select a jpg image (max filesize 1 MB) to add a banana
+            </div>);
+
+        const loadingComponent = (this.state.loading) ? (
+            <div>
+                <Loading/>
+            </div>
+        ) : (<div />);
+
+        if (!this.state.redirect) {
+            return (
+                <AuthLandingPageView fileChangedHandler={this.fileChangedHandler}
+                                     submitLoading={this.submitLoading}
+                                     loadingComponent={loadingComponent}
+                                     errorMsg={errorMsg}
+                                     $imagePreview={$imagePreview}/>
+            );
+        } else {
+            return (
+                <AuthRedirectResultsView prediction={this.state.prediction}
+                                         img={this.state.imagePreviewUrl}
+                                         username={this.props.username}/>
+            );
         }
-
-        let loading_component;
-        if (this.state.loading) {
-            loading_component = (
-                <div>
-                    <Loading/>
-                </div>
-            )
-        } else loading_component = (<div />);
-
-        if (!this.state.redirect) return (
-            <AuthLandingPageView fileChangedHandler={this.fileChangedHandler}
-                                 submit_loading={this.submit_loading}
-                                 loading_component={loading_component}
-                                 error_msg={error_msg}
-                                 $imagePreview={$imagePreview}/>
-        );
-        else return (
-            <AuthRedirectResultsView prediction={this.state.prediction}
-                                     img={this.state.imagePreviewUrl}
-                                     username={this.props.username}/>
-        )
     }
 }
 

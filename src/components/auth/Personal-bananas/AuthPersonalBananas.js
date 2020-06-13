@@ -3,6 +3,7 @@ import axios from 'axios';
 import AuthPersonalBananasView from './views/AuthPersonalBananasView';
 import {setUsername} from '../../../redux/actions';
 import {connect} from 'react-redux';
+import GetDaysAndAcc from "../../../func/GetDaysAndAcc";
 
 class AuthPersonalBananas extends React.Component {
 
@@ -42,13 +43,9 @@ class AuthPersonalBananas extends React.Component {
         var $this = this;
 
         let regexFilename = new RegExp('^(.*?),,,');
-
         let filename = regexFilename.exec(path);
-
         let regexUrl = new RegExp(',,,(.*?)$');
-
         let url = regexUrl.exec(path);
-
 
         axios.post('http://localhost:8081/auth/imgpred',
             `filename=${filename[1]}&username=${username}`,
@@ -56,41 +53,9 @@ class AuthPersonalBananas extends React.Component {
         ).then(function (response) {
             if (response.status === 200) {
                 const prediction = response.data;
-
-                const scoreRegex = /score:(.*?),/;
-                const accRegex = /acc:(0\.\d\d)/;
-
-                const score = scoreRegex.exec(prediction);
-                const accuracy = accRegex.exec(prediction);
-
-                var days = '[error]';
-
-                switch(true) {
-                    case score[1]==='1.0':
-                        days='1 day';
-                        break;
-                    case score[1]==='2.0':
-                        days='2 days';
-                        break;
-                    case score[1]==='3.0':
-                        days='3 days';
-                        break;
-                    case score[1]==='4.0':
-                        days='4 days';
-                        break;
-                    case score[1]==='5.0':
-                        days='5 days';
-                        break;
-                    case score[1]==='6.0':
-                        days='6 days';
-                        break;
-                    case score[1]==='7.0':
-                        days='7 days';
-                        break;
-                    default:
-                        days='[error]';
-                        break;
-                }
+                const daysAndAcc = GetDaysAndAcc(prediction);
+                const days = daysAndAcc[0];
+                const accuracy = daysAndAcc[1];
 
                 $this.setState({
                     pred: days+' for '+Number((accuracy[1]*100).toFixed(2)) +'%'
@@ -101,6 +66,7 @@ class AuthPersonalBananas extends React.Component {
 
     IMAGESpush = (path) => {
         var $this = this;
+
         const newIMAGE = {
             src: `${path}`,
             thumbnail: `${path}`,
@@ -149,7 +115,6 @@ class AuthPersonalBananas extends React.Component {
     }
 
     render() {
-
         return (
             <AuthPersonalBananasView shouldGalleryOpen = {this.state.shouldGalleryOpen}
                                      deleteImage={this.deleteImage}

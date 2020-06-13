@@ -45,3 +45,10 @@
     transform: rotate(360deg);
   }
 }
+
+.galleryWrapper {
+  display: block;
+  minHeight: 1px;
+  width: 100%;
+  overflow: auto;
+}

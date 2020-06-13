@@ -18,7 +18,7 @@ export const FormLogin = () => {
             `username=${values.email}&password=${values.password}`,
             {withCredentials: true}
         ).then(function (response) {
-            if (response.status === 200) {
+            if (response.data === 'success') {
                 setUsername(values.email);
                 setRedirect('success');
             }

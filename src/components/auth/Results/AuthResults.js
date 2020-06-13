@@ -3,6 +3,7 @@ import '../../../css/App.css';
 import axios from 'axios';
 import AuthErrorView from './views/AuthErrorView';
 import AuthResultsView from './views/AuthResultsView';
+import GetDaysAndAcc from "../../../func/GetDaysAndAcc";
 
 class AuthResults extends React.Component {
 
@@ -19,43 +20,17 @@ class AuthResults extends React.Component {
         const prediction = this.props.location.state.prediction;
         const username = this.props.location.state.username;
 
-        const scoreRegex = /score:(.*?),/;
-        const accRegex = /accuracy:(0\.\d\d)/;
         const filenameRegex = /filename:(.*?)END/
-
-        const score = scoreRegex.exec(prediction);
-        const accuracy = accRegex.exec(prediction);
         const filename = filenameRegex.exec(prediction);
 
-        var days = '[error]';
-        switch(true) {
-            case score[1]==='1.0':
-                days='1 day';
-                break;
-            case score[1]==='2.0':
-                days='2 days';
-                break;
-            case score[1]==='3.0':
-                days='3 days';
-                break;
-            case score[1]==='4.0':
-                days='4 days';
-                break;
-            case score[1]==='5.0':
-                days='5 days';
-                break;
-            case score[1]==='6.0':
-                days='6 days';
-                break;
-            case score[1]==='7.0':
-                days='7 days';
-                break;
-            default:
-                days='[error]';
-                break;
-        }
+        const daysAndAcc = GetDaysAndAcc(prediction);
+        const days = daysAndAcc[0];
+        const accuracy = daysAndAcc[1];
 
-        if (!score || score==null || accuracy==null) {
+        const scoreRegex = /score:(.*?),/;
+        const score = scoreRegex.exec(prediction);
+
+        if (days==='[error]' || accuracy==null) {
             return (
                 <AuthErrorView/>
             )
