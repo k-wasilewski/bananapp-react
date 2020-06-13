@@ -3,7 +3,9 @@ const GetDaysAndAcc = (prediction) => {
     const scoreRegex = /score:(.*?),/;
     const accRegex = /accuracy:(0\.\d\d)/;
     const score = scoreRegex.exec(prediction);
-    const accuracy = accRegex.exec(prediction)[1];
+    let accuracy = accRegex.exec(prediction);
+
+    if (accuracy!==null) accuracy = accuracy[1];
 
     var days;
     switch(true) {

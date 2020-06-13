@@ -53,13 +53,18 @@ class AuthPersonalBananas extends React.Component {
         ).then(function (response) {
             if (response.status === 200) {
                 const prediction = response.data;
-                const daysAndAcc = GetDaysAndAcc(prediction);
-                const days = daysAndAcc[0];
-                const accuracy = daysAndAcc[1];
+                const scoreRegex = /score:(.*?),/;
+                const score = scoreRegex.exec(prediction);
 
-                $this.setState({
-                    pred: days+' for '+Number((accuracy[1]*100).toFixed(2)) +'%'
-                }, function() { $this.IMAGESpush(url[1]) } );
+                if (score!==null) {
+                    const daysAndAcc = GetDaysAndAcc(prediction);
+                    const days = daysAndAcc[0];
+                    const accuracy = daysAndAcc[1];
+
+                    if (accuracy!==null) $this.setState({
+                        pred: days+' for '+Number((accuracy*100).toFixed(2)) +'%'
+                    }, function() { $this.IMAGESpush(url[1]) } );
+                }
             }
         });
     }

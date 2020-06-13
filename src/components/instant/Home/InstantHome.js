@@ -83,17 +83,10 @@ class InstantHome extends Component {
                         loading: false
                     })
                 } else {
-                    try {
-                        $this.setState({
-                            prediction: request.response,
-                            redirect: true
-                        });
-                    } catch (e) {
-                        $this.setState({
-                            error: true,
-                            loading: false
-                        })
-                    }
+                    $this.setState({
+                        prediction: request.response,
+                        redirect: true
+                    });
                 }
             }
             request.open('POST', 'http://localhost:8082/image', true);
