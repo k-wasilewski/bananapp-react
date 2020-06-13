@@ -21,7 +21,7 @@ class InstantResults extends React.Component {
         } else {
             const daysAndAcc = GetDaysAndAcc(prediction);
             const days = daysAndAcc[0];
-            const accuracy = daysAndAcc[1];
+            const accuracy = daysAndAcc;
 
             if (days==='[error]' || accuracy===null) {
                 return (

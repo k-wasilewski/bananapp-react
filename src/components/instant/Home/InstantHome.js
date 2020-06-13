@@ -10,22 +10,22 @@ class InstantHome extends Component {
     constructor(props) {
         super(props)
 
+        this.state =  {
+            selectedFile: null,
+            imagePreviewUrl: null,
+            prediction: null,
+            redirect: false,
+            register: false,
+            login: false,
+            loading: false,
+            error: false
+        };
+
         this.do_register = this.do_register.bind(this)
         this.do_login = this.do_login.bind(this)
         this.fileChangedHandler = this.fileChangedHandler.bind(this)
         this.submit_loading = this.submit_loading.bind(this)
     }
-
-    state =  {
-        selectedFile: null,
-        imagePreviewUrl: null,
-        prediction: null,
-        redirect: false,
-        register: false,
-        login: false,
-        loading: false,
-        error: false
-    };
 
     do_register = () => {
         if (!this.state.register) this.setState({register: true})
@@ -83,10 +83,17 @@ class InstantHome extends Component {
                         loading: false
                     })
                 } else {
-                    $this.setState({
-                        prediction: request.response,
-                        redirect: true
-                    });
+                    try {
+                        $this.setState({
+                            prediction: request.response,
+                            redirect: true
+                        });
+                    } catch (e) {
+                        $this.setState({
+                            error: true,
+                            loading: false
+                        })
+                    }
                 }
             }
             request.open('POST', 'http://localhost:8082/image', true);

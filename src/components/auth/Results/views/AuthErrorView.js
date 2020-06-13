@@ -6,7 +6,7 @@ class AuthErrorView extends Component {
         return (
             <div className='App'>
                 <header className='App-header'>
-                    <h3>File already exists or file type not supported or it's not a banana, try again</h3>
+                    <h3>File type not supported or it's not a banana, try again</h3>
                     <Link to='/success'>
                         <button variant='outlined'>
                             Back
