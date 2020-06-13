@@ -77,7 +77,7 @@ class InstantHome extends Component {
 
             var $this = this;
             request.onload = function() {
-                if (request.response==0) {
+                if (request.response===0) {
                     $this.setState({
                         error: true,
                         loading: false

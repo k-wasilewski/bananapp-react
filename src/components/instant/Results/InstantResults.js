@@ -11,20 +11,29 @@ class InstantResults extends React.Component {
 
         const prediction = this.props.location.state.prediction;
 
-        const daysAndAcc = GetDaysAndAcc(prediction);
-        const days = daysAndAcc[0];
-        const accuracy = daysAndAcc[1];
+        const scoreRegex = /score:(.*?),/;
+        const score = scoreRegex.exec(prediction);
 
-        if (days==='[error]' || accuracy===null) {
+        if (score===null) {
             return (
-               <InstantResultsErrorView/>
+                <InstantResultsErrorView/>
             )
         } else {
-            return (
-                <InstantResultsOkView img={img}
-                                      days={days}
-                                      accuracy={accuracy}/>
-            )
+            const daysAndAcc = GetDaysAndAcc(prediction);
+            const days = daysAndAcc[0];
+            const accuracy = daysAndAcc[1];
+
+            if (days==='[error]' || accuracy===null) {
+                return (
+                    <InstantResultsErrorView/>
+                )
+            } else {
+                return (
+                    <InstantResultsOkView img={img}
+                                          days={days}
+                                          accuracy={accuracy}/>
+                )
+            }
         }
     }
 }

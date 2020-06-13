@@ -40,7 +40,7 @@ class AuthHome extends React.Component {
             fd.append('file', this.state.selectedFile);
 
             request.onload = function() {
-                if (request.response==0) {
+                if (request.response===0) {
                     $this.setState({
                         error: true,
                         loading: false

@@ -30,7 +30,7 @@ class AuthResults extends React.Component {
         const scoreRegex = /score:(.*?),/;
         const score = scoreRegex.exec(prediction);
 
-        if (days==='[error]' || accuracy==null) {
+        if (days==='[error]' || accuracy===null) {
             return (
                 <AuthErrorView/>
             )
