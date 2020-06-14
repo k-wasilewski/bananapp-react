@@ -4,6 +4,7 @@ import axios from 'axios';
 import AuthErrorView from './views/AuthErrorView';
 import AuthResultsView from './views/AuthResultsView';
 import GetDaysAndAcc from "../../../func/GetDaysAndAcc";
+import InstantResultsErrorView from "../../instant/Results/views/InstantResultsErrorView";
 
 class AuthResults extends React.Component {
 
@@ -23,25 +24,31 @@ class AuthResults extends React.Component {
         const filenameRegex = /filename:(.*?)END/
         const filename = filenameRegex.exec(prediction);
 
-        const daysAndAcc = GetDaysAndAcc(prediction);
-        const days = daysAndAcc[0];
-        const accuracy = daysAndAcc[1];
-
         const scoreRegex = /score:(.*?),/;
         const score = scoreRegex.exec(prediction);
 
-        if (days==='[error]' || accuracy===null || score===null) {
+        if (score===null) {
             return (
                 <AuthErrorView/>
             )
         } else {
-            this.saveimg(score, accuracy, filename, username, img);
+            const daysAndAcc = GetDaysAndAcc(prediction);
+            const days = daysAndAcc[0];
+            const accuracy = daysAndAcc[1];
 
-            return (
-                <AuthResultsView img={img}
-                                 days={days}
-                                 acc={accuracy}/>
-            );
+            if (days==='[error]' || accuracy===null) {
+                return (
+                    <AuthErrorView/>
+                )
+            } else {
+                this.saveimg(score, accuracy, filename, username, img);
+
+                return (
+                    <AuthResultsView img={img}
+                                     days={days}
+                                     acc={accuracy}/>
+                );
+            }
         }
     }
 }

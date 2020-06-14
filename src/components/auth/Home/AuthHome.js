@@ -31,6 +31,13 @@ class AuthHome extends React.Component {
         this.setState({loading: true});
     }
 
+    handleError = () => {
+        this.setState({
+            error: true,
+            loading: false
+        });
+    }
+
     submit = () => {
         const $this = this;
 
@@ -41,10 +48,7 @@ class AuthHome extends React.Component {
             fd.append('file', this.state.selectedFile);
             request.onload = function() {
                 if (request.response==0) {
-                    $this.setState({
-                        error: true,
-                        loading: false
-                    })
+                    $this.handleError();
                 } else {
                     $this.setState({
                         prediction: request.response,
@@ -56,10 +60,7 @@ class AuthHome extends React.Component {
                 `http://localhost:8082/auth/image?uname=${this.props.username}`, true);
             request.send(fd);
         } else {
-            this.setState({
-                error: true,
-                loading: false
-            })
+            this.handleError();
         }
     }
 

@@ -67,6 +67,13 @@ class InstantHome extends Component {
         }, 500);
     }
 
+    handleError = () => {
+        this.setState({
+            error: true,
+            loading: false
+        });
+    }
+
     submit = () => {
         const $this = this;
 
@@ -79,10 +86,7 @@ class InstantHome extends Component {
 
             request.onload = function() {
                 if (request.response==0) {
-                    $this.setState({
-                        error: true,
-                        loading: false
-                    })
+                    $this.handleError();
                 } else {
                     $this.setState({
                         prediction: request.response,
@@ -93,10 +97,7 @@ class InstantHome extends Component {
             request.open('POST', 'http://localhost:8082/image', true);
             request.send(fd);
         } else {
-            this.setState({
-                error: true,
-                loading: false
-            })
+            this.handleError();
         }
     }
 
