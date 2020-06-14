@@ -28,12 +28,22 @@ class InstantHome extends Component {
     }
 
     doRegister = () => {
-        if (!this.state.register) this.setState({register: true})
+        if (!this.state.register) {
+            this.setState({
+                register: true,
+                login: false
+            })
+        }
         else this.setState({register: false})
     }
 
     doLogin = () => {
-        if (!this.state.login) this.setState({login: true})
+        if (!this.state.login) {
+            this.setState({
+                login: true,
+                register: false
+            })
+        }
         else this.setState({login: false})
     }
 
