@@ -21,6 +21,8 @@ export const FormLogin = () => {
             if (response.data === 'success') {
                 setUsername(values.email);
                 setRedirect('success');
+            } else {
+                setRedirect('fail');
             }
         });
         axios.post('http://localhost:8082/auth/user',

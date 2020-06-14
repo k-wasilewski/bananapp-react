@@ -52,7 +52,8 @@ class AuthHome extends React.Component {
                     });
                 }
             }
-            request.open('POST', `http://localhost:8082/auth/image?uname=${this.props.username}`, true);
+            request.open('POST',
+                `http://localhost:8082/auth/image?uname=${this.props.username}`, true);
             request.send(fd);
         } else {
             this.setState({
