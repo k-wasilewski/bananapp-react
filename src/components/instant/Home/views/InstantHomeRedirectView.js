@@ -9,7 +9,7 @@ class InstantHomeRedirectView extends Component {
                 state: { prediction: this.props.prediction,
                     img: this.props.img}
             }}/>
-        )
+        );
     }
 }
 export default InstantHomeRedirectView;

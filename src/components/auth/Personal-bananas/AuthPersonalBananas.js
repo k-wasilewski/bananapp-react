@@ -18,7 +18,8 @@ class AuthPersonalBananas extends React.Component {
             currentImage: 0,
 
             shouldGalleryOpen: true
-        }
+        };
+
         this.imgList = this.imgList.bind(this);
         this.deleteImage = this.deleteImage.bind(this);
         this.onCurrentImageChange = this.onCurrentImageChange.bind(this);
@@ -30,13 +31,13 @@ class AuthPersonalBananas extends React.Component {
         axios.get('http://localhost:8081/auth/files',
             {withCredentials: true})
             .then((response) => {
-                const imgs = response.data
+                const imgs = response.data;
                 this.setState({
                         images: imgs
                     },
                     function() { $this.imgList() }
                 );
-            })
+            });
     }
 
     getImgPred = (img) => {
@@ -84,7 +85,7 @@ class AuthPersonalBananas extends React.Component {
         const imgs = this.state.images;
 
         for (let i = 0; i < imgs.length; i++) {
-            const img = JSON.parse(imgs[i])
+            const img = JSON.parse(imgs[i]);
             this.getImgPred(img);
         }
     };
@@ -101,7 +102,7 @@ class AuthPersonalBananas extends React.Component {
             );
 
             let images = this.state.IMAGES.slice();
-            images.splice(this.state.currentImage, 1)
+            images.splice(this.state.currentImage, 1);
             this.setState({
                 IMAGES: images,
                 currentImage: 0
@@ -125,7 +126,7 @@ class AuthPersonalBananas extends React.Component {
                                      deleteImage={this.deleteImage}
                                      onCurrentImageChange={this.onCurrentImageChange}
                                      IMAGES={this.state.IMAGES}/>
-        )
+        );
     }
 }
 

@@ -14,7 +14,7 @@ class InstantResultsErrorView extends Component {
                     </Link>
                 </header>
             </div>
-        )
+        );
     }
 }
 export default InstantResultsErrorView;

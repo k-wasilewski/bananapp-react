@@ -4,13 +4,11 @@ import {Link} from 'react-router-dom';
 
 class AuthPersonalBananasView extends Component {
     render() {
-        const myGallery = (this.props.shouldGalleryOpen) ? (
-            <Gallery images={this.props.IMAGES}
+        const myGallery = (this.props.shouldGalleryOpen) ?
+            (<Gallery images={this.props.IMAGES}
                      customControls={[<button key='deleteImage' onClick={this.props.deleteImage}>
                          Delete banana</button>]}
-                     currentImageWillChange={this.props.onCurrentImageChange}
-            />
-        )
+                     currentImageWillChange={this.props.onCurrentImageChange} />)
         :
         (<div/>);
 
@@ -27,7 +25,7 @@ class AuthPersonalBananasView extends Component {
                     </Link>
                 </div>
             </div>
-        )
+        );
     }
 }
 export default AuthPersonalBananasView;

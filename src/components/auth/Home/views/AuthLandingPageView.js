@@ -12,7 +12,7 @@ class AuthLandingPageView extends Component {
                     { this.props.$imagePreview }
                 </header>
             </div>
-        )
+        );
     }
 }
 export default AuthLandingPageView;

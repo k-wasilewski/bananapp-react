@@ -14,13 +14,13 @@ class AuthSuccess extends Component {
         this.state = {
             username: 0,
             redir: 0
-        }
+        };
     }
 
     componentDidMount() {
-        if (this.props.location.state!==undefined) this.props.setUsername(
-            this.props.location.state.username
-        );
+        if (this.props.location.state!==undefined) {
+            this.props.setUsername( this.props.location.state.username );
+        }
     }
 
     logout = () => {
@@ -32,14 +32,14 @@ class AuthSuccess extends Component {
                         redir: 'logout'
                     });
                 }
-            })
+            });
     }
 
     render() {
         if (this.props.username===0) {
             return (
                 <AuthFailView/>
-            )
+            );
         } else if (this.state.redir===0) {
             return (
                 <AuthSuccessView username={this.state.username}
@@ -48,7 +48,7 @@ class AuthSuccess extends Component {
         } else if (this.state.redir==='logout') {
             return (
                 <AuthLogoutView/>
-            )
+            );
         }
     }
 }

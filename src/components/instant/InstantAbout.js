@@ -20,7 +20,7 @@ class InstantAbout extends Component {
                     </Link>
                 </header>
             </div>
-        )
+        );
     }
 }
 export default InstantAbout;

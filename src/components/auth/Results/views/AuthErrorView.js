@@ -14,7 +14,7 @@ class AuthErrorView extends Component {
                     </Link>
                 </header>
             </div>
-        )
+        );
     }
 }
 export default AuthErrorView;

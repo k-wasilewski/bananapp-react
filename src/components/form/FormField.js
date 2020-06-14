@@ -9,10 +9,11 @@ export const FormField = (props) => {
         isSubmitted,
         setValue,
         value,
-    } = useField(props)
-    const { label, type, required } = props
-    const [isTouched, setIsTouched] = React.useState(false)
-    const showError = !isValid && (isTouched || isSubmitted)
+    } = useField(props);
+    const { label, type, required } = props;
+    const [isTouched, setIsTouched] = React.useState(false);
+    const showError = !isValid && (isTouched || isSubmitted);
+
     return (
         <div className={`demo-form-group ${(showError) ? 'is-error' : ''}`}>
             <label className='demo-label' htmlFor={id}>
@@ -36,5 +37,5 @@ export const FormField = (props) => {
                 </div>
             )}
         </div>
-    )
+    );
 }

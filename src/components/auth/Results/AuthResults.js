@@ -27,14 +27,14 @@ class AuthResults extends React.Component {
         if (score===undefined) {
             return (
                 <AuthErrorView/>
-            )
+            );
         } else {
             const days = GetDays(score);
 
             if (days==='[error]' || accuracy===undefined) {
                 return (
                     <AuthErrorView/>
-                )
+                );
             } else {
                 this.saveimg(score, accuracy, filename, username, img);
 

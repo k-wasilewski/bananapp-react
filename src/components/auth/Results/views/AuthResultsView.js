@@ -17,7 +17,7 @@ class AuthResultsView extends Component {
                     </Link>
                 </header>
             </div>
-        )
+        );
     }
 }
 export default AuthResultsView;

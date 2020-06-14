@@ -10,7 +10,7 @@ class AuthRedirectResultsView extends Component {
                     img: this.props.img,
                     username: this.props.username}
             }}/>
-        )
+        );
     }
 }
 export default AuthRedirectResultsView;

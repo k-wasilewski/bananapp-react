@@ -16,7 +16,7 @@ class InstantResultsOkView extends Component {
                     </Link>
                 </header>
             </div>
-        )
+        );
     }
 }
 export default InstantResultsOkView;

@@ -8,7 +8,7 @@ class AuthLogoutView extends Component {
                 pathname: '/',
                 state: { logout: true }
             }}/>
-        )
+        );
     }
 }
 export default AuthLogoutView;

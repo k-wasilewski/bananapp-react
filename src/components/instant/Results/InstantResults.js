@@ -17,20 +17,20 @@ class InstantResults extends React.Component {
         if (score===undefined) {
             return (
                 <InstantResultsErrorView/>
-            )
+            );
         } else {
             const days = GetDays(score);
 
             if (days==='[error]' || accuracy===undefined) {
                 return (
                     <InstantResultsErrorView/>
-                )
+                );
             } else {
                 return (
                     <InstantResultsOkView img={img}
                                           days={days}
                                           accuracy={accuracy}/>
-                )
+                );
             }
         }
     }

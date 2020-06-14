@@ -16,8 +16,8 @@ class AuthHome extends React.Component {
             error: false
         };
 
-        this.fileChangedHandler = this.fileChangedHandler.bind(this)
-        this.submitLoading = this.submitLoading.bind(this)
+        this.fileChangedHandler = this.fileChangedHandler.bind(this);
+        this.submitLoading = this.submitLoading.bind(this);
     }
 
     submitLoading = () => {
@@ -70,11 +70,11 @@ class AuthHome extends React.Component {
         if (event.target.files[0].size>1024*1024) {
             this.setState({
                 selectedFile: null
-            })
+            });
         } else {
             this.setState({
                 selectedFile: event.target.files[0]
-            })
+            });
         }
 
         const reader = new FileReader();
@@ -84,7 +84,7 @@ class AuthHome extends React.Component {
                 imagePreviewUrl: reader.result
             });
         }
-        reader.readAsDataURL(event.target.files[0])
+        reader.readAsDataURL(event.target.files[0]);
     }
 
     render() {
@@ -99,13 +99,12 @@ class AuthHome extends React.Component {
                 Select a jpg image (max filesize 1 MB) to add a banana
             </div>);
 
-        const loadingComponent = (this.state.loading) ? (
-            <div>
+        const loadingComponent = (this.state.loading) ?
+            (<div>
                 <Loading/>
-            </div>
-        )
-        :
-        (<div />);
+            </div>)
+            :
+            (<div />);
 
         if (!this.state.redirect) {
             return (

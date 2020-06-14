@@ -28,7 +28,7 @@ class AuthSuccessView extends Component {
                     </button>
                 </header>
             </div>
-        )
+        );
     }
 }
 

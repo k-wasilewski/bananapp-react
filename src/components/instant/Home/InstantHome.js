@@ -8,7 +8,7 @@ import InstantHomeRedirectView from './views/InstantHomeRedirectView';
 
 class InstantHome extends Component {
     constructor(props) {
-        super(props)
+        super(props);
 
         this.state =  {
             selectedFile: null,
@@ -21,10 +21,10 @@ class InstantHome extends Component {
             error: false
         };
 
-        this.doRegister = this.doRegister.bind(this)
-        this.doLogin = this.doLogin.bind(this)
-        this.fileChangedHandler = this.fileChangedHandler.bind(this)
-        this.submitLoading = this.submitLoading.bind(this)
+        this.doRegister = this.doRegister.bind(this);
+        this.doLogin = this.doLogin.bind(this);
+        this.fileChangedHandler = this.fileChangedHandler.bind(this);
+        this.submitLoading = this.submitLoading.bind(this);
     }
 
     doRegister = () => {
@@ -32,9 +32,9 @@ class InstantHome extends Component {
             this.setState({
                 register: true,
                 login: false
-            })
+            });
         }
-        else this.setState({register: false})
+        else this.setState({register: false});
     }
 
     doLogin = () => {
@@ -42,20 +42,20 @@ class InstantHome extends Component {
             this.setState({
                 login: true,
                 register: false
-            })
+            });
         }
-        else this.setState({login: false})
+        else this.setState({login: false});
     }
 
     fileChangedHandler = event => {
         if (event.target.files[0].size>1024*1024) {
             this.setState({
                 selectedFile: null
-            })
+            });
         } else {
             this.setState({
                 selectedFile: event.target.files[0]
-            })
+            });
         }
 
         const reader = new FileReader();
@@ -66,7 +66,7 @@ class InstantHome extends Component {
             });
         }
 
-        reader.readAsDataURL(event.target.files[0])
+        reader.readAsDataURL(event.target.files[0]);
     }
 
     submitLoading = () => {
@@ -118,23 +118,20 @@ class InstantHome extends Component {
 
     render() {
         const imagePreview = (!this.state.imagePreviewUrl) ?
-            (
-                <div className='previewText image-container'>
+            (<div className='previewText image-container'>
                     Select a jpg image (max filesize 1 MB) to check your banana
-                </div>
-            ) : (
-                <div className='image-container' >
+                </div>)
+            :
+            (<div className='image-container' >
                     <img src={this.state.imagePreviewUrl} alt='icon' width='200' />
-                </div>
-            );
+                </div>);
 
-        const formRegister = ( this.state.register ) ? (
-                <div>
+        const formRegister = ( this.state.register ) ?
+            (<div>
                     <FormRegister />
-                </div>
-            ) : (
-                <div />
-                );
+                </div>)
+            :
+            (<div />);
 
         const formLogin = ( this.state.login ) ? (<FormLogin/>) : (<div />);
 
@@ -142,15 +139,14 @@ class InstantHome extends Component {
             this.props.location.state.logout !== undefined ) ?
                 (<div>Successfully logged out</div>) : (<div />);
 
-        const loadingComponent = (this.state.loading) ? (
-                <div>
+        const loadingComponent = (this.state.loading) ?
+            (<div>
                     <Loading/>
-                </div>
-            )
-            :
-            (<div />);
+                </div>)
+            : (<div />);
 
-        const errorMsg = (this.state.error) ? (<div>Error uploading file to server</div>) : (<div/>);
+        const errorMsg = (this.state.error) ?
+            (<div>Error uploading file to server</div>) : (<div/>);
 
         if (!this.state.redirect) {
             return (
@@ -169,7 +165,7 @@ class InstantHome extends Component {
             return (
                 <InstantHomeRedirectView prediction={this.state.prediction}
                                          img={this.state.imagePreviewUrl}/>
-            )
+            );
         }
     }
 }
