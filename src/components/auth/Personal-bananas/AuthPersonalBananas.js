@@ -24,12 +24,12 @@ class AuthPersonalBananas extends React.Component {
     }
 
     componentDidMount() {
-        let $this = this;
+        const $this = this;
 
         axios.get('http://localhost:8081/auth/files',
             {withCredentials: true})
             .then((response) => {
-                let imgs = response.data
+                const imgs = response.data
                 this.setState({
                         images: imgs
                     },
@@ -39,13 +39,13 @@ class AuthPersonalBananas extends React.Component {
     }
 
     getImgPred = (path) => {
-        var $this = this;
-        var username = this.props.username;
+        const $this = this;
+        const username = this.props.username;
 
-        let regexFilename = new RegExp('^(.*?),,,');
-        let filename = regexFilename.exec(path);
-        let regexUrl = new RegExp(',,,(.*?)$');
-        let url = regexUrl.exec(path);
+        const regexFilename = new RegExp('^(.*?),,,');
+        const filename = regexFilename.exec(path);
+        const regexUrl = new RegExp(',,,(.*?)$');
+        const url = regexUrl.exec(path);
 
         axios.post('http://localhost:8081/auth/imgpred',
             `filename=${filename[1]}&username=${username}`,
@@ -72,7 +72,7 @@ class AuthPersonalBananas extends React.Component {
     }
 
     IMAGESpush = (path) => {
-        var $this = this;
+        const $this = this;
 
         const newIMAGE = {
             src: `${path}`,
@@ -87,16 +87,16 @@ class AuthPersonalBananas extends React.Component {
         const imgpaths = this.state.images;
 
         for (let i = 0; i < imgpaths.length; i++) {
-            var path = imgpaths[i]
+            const path = imgpaths[i]
             this.getImgPred(path);
         }
     };
 
     deleteImage() {
-        var username = this.props.username;
+        const username = this.props.username;
 
         if (window.confirm(`Are you sure you want to delete banana number ${this.state.currentImage+1}?`)) {
-            let filenameRegex =
+            const filenameRegex =
                 (this.state.images[this.state.currentImage].includes('jpg')) ?
                 /(.*?).jpg/
                 :
@@ -108,7 +108,7 @@ class AuthPersonalBananas extends React.Component {
                 {withCredentials: true}
             );
 
-            var images = this.state.IMAGES.slice();
+            let images = this.state.IMAGES.slice();
             images.splice(this.state.currentImage, 1)
             this.setState({
                 IMAGES: images,

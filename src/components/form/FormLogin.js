@@ -28,7 +28,7 @@ export const FormLogin = () => {
         );
     };
 
-    let error_msg = (redirect !== 'success' && redirect !== 0) ?
+    const errorMsg = (redirect !== 'success' && redirect !== 0) ?
         (<div>Login failed</div>)
         :
         (<div/>);
@@ -37,7 +37,7 @@ export const FormLogin = () => {
         return (
             <Formiz connect={myForm} onValidSubmit={handleSubmit}>
                 <form noValidate onSubmit={myForm.submit}>
-                    {error_msg}
+                    {errorMsg}
                     <FormField name='email' label='E-mail: ' validations=
                         {[{
                                 rule: isEmail(),

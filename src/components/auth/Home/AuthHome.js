@@ -32,11 +32,11 @@ class AuthHome extends React.Component {
     }
 
     submit = () => {
-        var $this = this;
+        const $this = this;
 
         if (this.state.selectedFile!==null) {
-            var fd = new FormData();
-            var request = new XMLHttpRequest();
+            const fd = new FormData();
+            const request = new XMLHttpRequest();
 
             fd.append('file', this.state.selectedFile);
             request.onload = function() {
@@ -73,7 +73,7 @@ class AuthHome extends React.Component {
             })
         }
 
-        let reader = new FileReader();
+        const reader = new FileReader();
 
         reader.onloadend = () => {
             this.setState({

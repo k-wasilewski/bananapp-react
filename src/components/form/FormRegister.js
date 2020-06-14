@@ -21,9 +21,9 @@ export const FormRegister = () => {
 
     let message = (<div/>);
     if (redirect === 'success') {
-        message = (<div>Registration success</div>)
+        message = (<div>Registration success</div>);
     } else if (redirect !== 0) {
-        message = (<div>E-mail already exists</div>)
+        message = (<div>E-mail already exists</div>);
     }
 
     return (

@@ -15,10 +15,7 @@ export const FormField = (props) => {
     const showError = !isValid && (isTouched || isSubmitted)
     return (
         <div className={`demo-form-group ${(showError) ? 'is-error' : ''}`}>
-            <label
-                className='demo-label'
-                htmlFor={id}
-            >
+            <label className='demo-label' htmlFor={id}>
                 { label }
                 {!!required && ' *'}
             </label>

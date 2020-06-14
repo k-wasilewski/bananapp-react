@@ -48,7 +48,7 @@ class InstantHome extends Component {
             })
         }
 
-        let reader = new FileReader();
+        const reader = new FileReader();
 
         reader.onloadend = () => {
             this.setState({
@@ -68,14 +68,15 @@ class InstantHome extends Component {
     }
 
     submit = () => {
+        const $this = this;
+
         if (this.state.selectedFile!==null) {
-            var fd = new FormData();
+            const fd = new FormData();
 
             fd.append('file', this.state.selectedFile);
 
-            var request = new XMLHttpRequest();
+            const request = new XMLHttpRequest();
 
-            var $this = this;
             request.onload = function() {
                 if (request.response==0) {
                     $this.setState({
@@ -104,7 +105,7 @@ class InstantHome extends Component {
     }
 
     render() {
-        let imagePreview = (!this.state.imagePreviewUrl) ?
+        const imagePreview = (!this.state.imagePreviewUrl) ?
             (
                 <div className='previewText image-container'>
                     Select a jpg image (max filesize 1 MB) to check your banana
@@ -115,7 +116,7 @@ class InstantHome extends Component {
                 </div>
             );
 
-        let formRegister = ( this.state.register ) ? (
+        const formRegister = ( this.state.register ) ? (
                 <div>
                     <FormRegister />
                 </div>
@@ -123,13 +124,13 @@ class InstantHome extends Component {
                 <div />
                 );
 
-        let formLogin = ( this.state.login ) ? (<FormLogin/>) : (<div />);
+        const formLogin = ( this.state.login ) ? (<FormLogin/>) : (<div />);
 
-        let logoutMessage = ( this.props.location.state !== undefined &&
+        const logoutMessage = ( this.props.location.state !== undefined &&
             this.props.location.state.logout !== undefined ) ?
                 (<div>Successfully logged out</div>) : (<div />);
 
-        let loadingComponent = (this.state.loading) ? (
+        const loadingComponent = (this.state.loading) ? (
                 <div>
                     <Loading/>
                 </div>
@@ -137,7 +138,7 @@ class InstantHome extends Component {
             :
             (<div />);
 
-        let errorMsg = (this.state.error) ? (<div>Error uploading file to server</div>) : (<div/>);
+        const errorMsg = (this.state.error) ? (<div>Error uploading file to server</div>) : (<div/>);
 
         if (!this.state.redirect) {
             return (

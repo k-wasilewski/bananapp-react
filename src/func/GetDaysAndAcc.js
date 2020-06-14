@@ -7,7 +7,7 @@ const GetDaysAndAcc = (prediction) => {
 
     if (accuracy!==null) accuracy = accuracy[1];
 
-    var days;
+    let days;
     switch(true) {
         case score[1]==='1.0':
             days='1 day';

@@ -6,13 +6,13 @@ import { connect } from 'react-redux';
 
 class AuthSuccessView extends Component {
     render() {
-        var $this = this;
+        const $this = this;
 
         return (
             <div className='App'>
                 <header className='App-header'>
                     <h3> Logged-in as { this.props.username }</h3>
-                    < AuthHome username={this.props.username}/>
+                    <AuthHome username={this.props.username}/>
                     <Link to={{
                         pathname: '/auth/personalBananas',
                         state: {
