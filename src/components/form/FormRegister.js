@@ -5,7 +5,7 @@ import { FormField } from './FormField' // Import your field
 import axios from 'axios';
 import { useState } from 'react'
 
-export const FormRegister = () => {//ALWAYS registration success
+export const FormRegister = () => {
     const myForm = useForm();
     const [redirect, setRedirect] = useState(0);
 
@@ -23,7 +23,7 @@ export const FormRegister = () => {//ALWAYS registration success
     if (redirect === 'success') {
         message = (<div>Registration success</div>);
     } else if (redirect !== 0) {
-        message = (<div>E-mail already exists</div>);
+        message = (<div>Registration failed</div>);
     }
 
     return (
