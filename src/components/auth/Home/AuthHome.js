@@ -47,11 +47,13 @@ class AuthHome extends React.Component {
 
             fd.append('file', this.state.selectedFile);
             request.onload = function() {
-                if (request.response==0) {
+                const response = request.response.trim();
+
+                if (response==0 || response=='fail') {
                     $this.handleError();
                 } else {
                     $this.setState({
-                        prediction: JSON.parse(request.response),
+                        prediction: JSON.parse(response),
                         redirect: true
                     });
                 }
