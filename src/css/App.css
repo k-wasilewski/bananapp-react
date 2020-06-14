@@ -56,3 +56,8 @@
 .img {
   max-height: 500px;
 }
+
+.formBtn {
+  font-size: 0.8rem;
+  padding: 0;
+}

@@ -5,7 +5,7 @@ import { FormField } from './FormField' // Import your field
 import axios from 'axios';
 import { useState } from 'react'
 
-export const FormRegister = () => {
+export const FormRegister = () => {//ALWAYS registration success
     const myForm = useForm();
     const [redirect, setRedirect] = useState(0);
 
@@ -45,7 +45,7 @@ export const FormRegister = () => {
                             message: 'Passwords do not match',
                         }]}
                 />
-                <button type='submit' disabled={!myForm.isValid}>
+                <button className='formBtn' type='submit' disabled={!myForm.isValid}>
                     Submit
                 </button>
             </form>

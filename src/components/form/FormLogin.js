@@ -47,7 +47,7 @@ export const FormLogin = () => {
                             }]}
                     />
                     <FormField name='password' label='Password: ' type='password' />
-                    <button type='submit' disabled={!myForm.isValid}>
+                    <button className='formBtn' type='submit' disabled={!myForm.isValid}>
                         Submit
                     </button>
                 </form>
