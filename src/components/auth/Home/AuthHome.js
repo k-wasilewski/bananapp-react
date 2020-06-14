@@ -32,13 +32,13 @@ class AuthHome extends React.Component {
     }
 
     submit = () => {
+        var $this = this;
+
         if (this.state.selectedFile!==null) {
             var fd = new FormData();
-            var $this = this;
             var request = new XMLHttpRequest();
 
             fd.append('file', this.state.selectedFile);
-
             request.onload = function() {
                 if (request.response==0) {
                     $this.setState({
@@ -80,9 +80,7 @@ class AuthHome extends React.Component {
                 imagePreviewUrl: reader.result
             });
         }
-
         reader.readAsDataURL(event.target.files[0])
-
     }
 
     render() {
@@ -101,7 +99,9 @@ class AuthHome extends React.Component {
             <div>
                 <Loading/>
             </div>
-        ) : (<div />);
+        )
+        :
+        (<div />);
 
         if (!this.state.redirect) {
             return (

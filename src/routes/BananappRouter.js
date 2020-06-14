@@ -8,7 +8,7 @@ import AuthResults from '../components/auth/Results/AuthResults';
 import AuthPersonalBananas from '../components/auth/Personal-bananas/AuthPersonalBananas';
 import InstantAbout from '../components/instant/InstantAbout';
 
-const Main = () => {
+const BananappRouter = () => {
     return (
         <Switch>
             <Route exact path='/' component={InstantHome}></Route>
@@ -21,4 +21,4 @@ const Main = () => {
     );
 }
 
-export default Main;
+export default BananappRouter;

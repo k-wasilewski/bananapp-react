@@ -10,7 +10,9 @@ class AuthPersonalBananasView extends Component {
                          Delete banana</button>]}
                      currentImageWillChange={this.props.onCurrentImageChange}
             />
-        ) : (<div/>);
+        )
+        :
+        (<div/>);
 
         return (
             <div className='App'>

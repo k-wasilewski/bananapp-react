@@ -39,8 +39,8 @@ class AuthPersonalBananas extends React.Component {
     }
 
     getImgPred = (path) => {
-        var username = this.props.username;
         var $this = this;
+        var username = this.props.username;
 
         let regexFilename = new RegExp('^(.*?),,,');
         let filename = regexFilename.exec(path);
@@ -61,9 +61,11 @@ class AuthPersonalBananas extends React.Component {
                     const days = daysAndAcc[0];
                     const accuracy = daysAndAcc[1];
 
-                    if (accuracy!==null) $this.setState({
-                        pred: days+' for '+Number((accuracy*100).toFixed(2)) +'%'
-                    }, function() { $this.IMAGESpush(url[1]) } );
+                    if (accuracy!==null) {
+                        $this.setState({
+                            pred: days+' for '+Number((accuracy*100).toFixed(2)) +'%'
+                        }, function() { $this.IMAGESpush(url[1]) } );
+                    }
                 }
             }
         });
@@ -94,10 +96,11 @@ class AuthPersonalBananas extends React.Component {
         var username = this.props.username;
 
         if (window.confirm(`Are you sure you want to delete banana number ${this.state.currentImage+1}?`)) {
-            let filenameRegex;
-            this.state.images[this.state.currentImage].includes('jpg') ?
-                filenameRegex=/(.*?).jpg/ :
-                filenameRegex=/(.*?).jpeg/;
+            let filenameRegex =
+                (this.state.images[this.state.currentImage].includes('jpg')) ?
+                /(.*?).jpg/
+                :
+                /(.*?).jpeg/;
             const filename = filenameRegex.exec(this.state.images[this.state.currentImage]);
 
             axios.post('http://localhost:8081/auth/del',
@@ -111,9 +114,11 @@ class AuthPersonalBananas extends React.Component {
                 IMAGES: images,
                 currentImage: 0
             }, () => {
-                if (this.state.IMAGES.length===0) this.setState({
-                    shouldGalleryOpen: false
-                })
+                if (this.state.IMAGES.length===0) {
+                    this.setState({
+                        shouldGalleryOpen: false
+                    })
+                }
             });
         }
     }

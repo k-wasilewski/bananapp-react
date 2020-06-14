@@ -28,41 +28,24 @@ export const FormLogin = () => {
         );
     };
 
-    let error_msg = (<div/>);
-    if (redirect !== 'success' && redirect !== 0) {
-        error_msg = (<div>Login failed</div>)
-    }
+    let error_msg = (redirect !== 'success' && redirect !== 0) ?
+        (<div>Login failed</div>)
+        :
+        (<div/>);
 
     if (redirect !== 'success') {
         return (
-            <Formiz
-                connect={myForm}
-                onValidSubmit={handleSubmit}
-            >
-                <form
-                    noValidate
-                    onSubmit={myForm.submit}
-                >
+            <Formiz connect={myForm} onValidSubmit={handleSubmit}>
+                <form noValidate onSubmit={myForm.submit}>
                     {error_msg}
-                    <FormField
-                        name='email'
-                        label='E-mail: '
-                        validations={[
-                            {
+                    <FormField name='email' label='E-mail: ' validations=
+                        {[{
                                 rule: isEmail(),
                                 message: 'This is not a valid email',
-                            },
-                        ]}
+                            }]}
                     />
-                    <FormField
-                        name='password'
-                        label='Password: '
-                        type='password'
-                    />
-                    <button
-                        type='submit'
-                        disabled={!myForm.isValid}
-                    >
+                    <FormField name='password' label='Password: ' type='password' />
+                    <button type='submit' disabled={!myForm.isValid}>
                         Submit
                     </button>
                 </form>

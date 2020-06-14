@@ -21,18 +21,18 @@ class InstantHome extends Component {
             error: false
         };
 
-        this.do_register = this.do_register.bind(this)
-        this.do_login = this.do_login.bind(this)
+        this.doRegister = this.doRegister.bind(this)
+        this.doLogin = this.doLogin.bind(this)
         this.fileChangedHandler = this.fileChangedHandler.bind(this)
-        this.submit_loading = this.submit_loading.bind(this)
+        this.submitLoading = this.submitLoading.bind(this)
     }
 
-    do_register = () => {
+    doRegister = () => {
         if (!this.state.register) this.setState({register: true})
         else this.setState({register: false})
     }
 
-    do_login = () => {
+    doLogin = () => {
         if (!this.state.login) this.setState({login: true})
         else this.setState({login: false})
     }
@@ -60,7 +60,7 @@ class InstantHome extends Component {
 
     }
 
-    submit_loading = () => {
+    submitLoading = () => {
         this.loading();
         setTimeout( () => {
             this.submit();
@@ -104,60 +104,55 @@ class InstantHome extends Component {
     }
 
     render() {
-        let imagePreview = (<div className='previewText image-container'>Select a jpg image (max filesize 1 MB) to check your banana</div>);
-        if (this.state.imagePreviewUrl) {
-            imagePreview = (<div className='image-container' ><img src={this.state.imagePreviewUrl} alt='icon' width='200' /> </div>);
-        }
+        let imagePreview = (!this.state.imagePreviewUrl) ?
+            (
+                <div className='previewText image-container'>
+                    Select a jpg image (max filesize 1 MB) to check your banana
+                </div>
+            ) : (
+                <div className='image-container' >
+                    <img src={this.state.imagePreviewUrl} alt='icon' width='200' />
+                </div>
+            );
 
-        let form_register;
-        if ( this.state.register ) {
-            form_register = (
+        let formRegister = ( this.state.register ) ? (
                 <div>
                     <FormRegister />
                 </div>
-            )
-        } else form_register = (<div />)
+            ) : (
+                <div />
+                );
 
-        let form_login;
-        if ( this.state.login ) {
-            form_login = (<FormLogin/>)
-        } else form_login = (<div />)
+        let formLogin = ( this.state.login ) ? (<FormLogin/>) : (<div />);
 
-        let logout_message = (<div />);
-        if ( this.props.location.state !== undefined) {
-            if ( this.props.location.state.logout !== undefined ) {
-                logout_message = (<div>Successfully logged out</div>)
-            }
-        }
+        let logoutMessage = ( this.props.location.state !== undefined &&
+            this.props.location.state.logout !== undefined ) ?
+                (<div>Successfully logged out</div>) : (<div />);
 
-        let loading_component;
-        if (this.state.loading) {
-            loading_component = (
+        let loadingComponent = (this.state.loading) ? (
                 <div>
                     <Loading/>
                 </div>
             )
-        } else loading_component = (<div />);
+            :
+            (<div />);
 
-        let error_msg;
-        if (this.state.error) {
-            error_msg = (<div>Error uploading file to server</div>)
-        } else error_msg = (<div/>);
+        let errorMsg = (this.state.error) ? (<div>Error uploading file to server</div>) : (<div/>);
 
-
-        if (!this.state.redirect) return (
-            <InstantLandingPageView do_register={this.do_register}
-                          do_login={this.do_login}
-                          fileChangedHandler={this.fileChangedHandler}
-                          submit_loading={this.submit_loading}
-                          logout_message={logout_message}
-                          form_register={form_register}
-                          form_login={form_login}
-                          loading_component={loading_component}
-                          error_msg={error_msg}
-                          image_preview={imagePreview}/>
-        );
-        else if (this.state.redirect || !this.state.error) {
+        if (!this.state.redirect) {
+            return (
+                <InstantLandingPageView doRegister={this.doRegister}
+                                        doLogin={this.doLogin}
+                                        fileChangedHandler={this.fileChangedHandler}
+                                        submitLoading={this.submitLoading}
+                                        logoutMessage={logoutMessage}
+                                        formRegister={formRegister}
+                                        formLogin={formLogin}
+                                        loadingComponent={loadingComponent}
+                                        errorMsg={errorMsg}
+                                        imagePreview={imagePreview}/>
+            );
+        } else if (this.state.redirect || !this.state.error) {
             return (
                 <InstantHomeRedirectView prediction={this.state.prediction}
                                          img={this.state.imagePreviewUrl}/>

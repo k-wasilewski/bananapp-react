@@ -1,5 +1,5 @@
 import logo from '../../../../jpg/logo0.jpg';
-import logo_title from '../../../../jpg/logotitle.jpg';
+import logoTitle from '../../../../jpg/logotitle.jpg';
 import {Link} from 'react-router-dom';
 import React, {Component} from 'react';
 
@@ -11,21 +11,21 @@ class InstantLandingPageView extends Component {
                     <div className='App-break'/>
                     <img src={logo} className='App-logo' alt='logo'/>
                     <div className='App-break'/>
-                    <img src={logo_title} alt='logo-title'/>
-                    {this.props.logout_message}
-                    <button variant='outlined' onClick={this.props.do_register}>
+                    <img src={logoTitle} alt='logo-title'/>
+                    {this.props.logoutMessage}
+                    <button variant='outlined' onClick={this.props.doRegister}>
                         Register
                     </button>
-                    {this.props.form_register}
-                    <button variant='outlined' onClick={this.props.do_login}>
+                    {this.props.formRegister}
+                    <button variant='outlined' onClick={this.props.doLogin}>
                         Log-in
                     </button>
-                    {this.props.form_login}
+                    {this.props.formLogin}
                     <input type='file' name='avatar' onChange={this.props.fileChangedHandler}/>
-                    <button type='button' onClick={this.props.submit_loading}> Upload</button>
-                    {this.props.loading_component}
-                    {this.props.error_msg}
-                    {this.props.image_preview}
+                    <button type='button' onClick={this.props.submitLoading}> Upload</button>
+                    {this.props.loadingComponent}
+                    {this.props.errorMsg}
+                    {this.props.imagePreview}
                     <div className='App-break'/>
                     <Link to='/about'>
                         <button variant='outlined'>

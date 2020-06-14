@@ -27,46 +27,25 @@ export const FormRegister = () => {
     }
 
     return (
-        <Formiz
-            connect={myForm}
-            onValidSubmit={handleSubmit}
-        >
+        <Formiz connect={myForm} onValidSubmit={handleSubmit} >
             {message}
-            <form
-                noValidate
-                onSubmit={myForm.submit}
-            >
-                <FormField
-                    name='email'
-                    label='E-mail: '
-                    validations={[
-                        {
+            <form noValidate onSubmit={myForm.submit}>
+                <FormField name='email' label='E-mail: ' validations=
+                    {[{
                             rule: isEmail(),
                             message: 'This is not a valid email',
-                        },
-                    ]}
+                        }]}
                 />
-                <FormField
-                    name='password'
-                    label='Password: '
-                    type='password'
-                />
-                <FormField
-                    name='passwordConfirm'
-                    label='Confirm password: '
-                    type='password'
-                    validations={[
-                        {
+                <FormField name='password' label='Password: ' type='password' />
+                <FormField name='passwordConfirm' label='Confirm password: ' type='password'
+                    validations=
+                        {[{
                             rule: (value) => myForm.values.password === value,
                             deps: [myForm.values.password],
                             message: 'Passwords do not match',
-                        }
-                    ]}
+                        }]}
                 />
-                <button
-                    type='submit'
-                    disabled={!myForm.isValid}
-                >
+                <button type='submit' disabled={!myForm.isValid}>
                     Submit
                 </button>
             </form>

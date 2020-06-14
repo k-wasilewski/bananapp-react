@@ -6,7 +6,7 @@ class AuthResultsView extends Component {
         return (
             <div className='App'>
                 <header className='App-header'>
-                    <img src={this.props.img} style={{maxHeight: '500px'}} alt='your banana' />
+                    <img src={this.props.img} className='img' alt='your banana' />
                     <h3> Your banana is { this.props.days } old, </h3>
                     <h3> with { Number((this.props.acc*100).toFixed(2)) }% certainty</h3>
                     <Link to='/success'>
