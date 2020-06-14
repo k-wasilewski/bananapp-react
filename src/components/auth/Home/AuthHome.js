@@ -51,7 +51,7 @@ class AuthHome extends React.Component {
                     $this.handleError();
                 } else {
                     $this.setState({
-                        prediction: request.response,
+                        prediction: JSON.parse(request.response),
                         redirect: true
                     });
                 }

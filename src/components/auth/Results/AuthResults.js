@@ -3,14 +3,13 @@ import '../../../css/App.css';
 import axios from 'axios';
 import AuthErrorView from './views/AuthErrorView';
 import AuthResultsView from './views/AuthResultsView';
-import GetDaysAndAcc from "../../../func/GetDaysAndAcc";
-import InstantResultsErrorView from "../../instant/Results/views/InstantResultsErrorView";
+import GetDays from "../../../func/GetDays";
 
 class AuthResults extends React.Component {
 
     saveimg = (score, acc, filename, username, pic_link) => {
         axios.post('http://localhost:8081/auth/saveimg',
-            `filename=${filename[1]}&score=${score[1]}&acc=${acc}
+            `filename=${filename}&score=${score}&acc=${acc}
             &uname=${username}&link=${pic_link.split('+').join('plussign')}`,
             {withCredentials: true}
         )};
@@ -21,22 +20,18 @@ class AuthResults extends React.Component {
         const prediction = this.props.location.state.prediction;
         const username = this.props.location.state.username;
 
-        const filenameRegex = /filename:(.*?)END/
-        const filename = filenameRegex.exec(prediction);
+        const accuracy = prediction.accuracy;
+        const score = prediction.score;
+        const filename = prediction.filename;
 
-        const scoreRegex = /score:(.*?),/;
-        const score = scoreRegex.exec(prediction);
-
-        if (score===null) {
+        if (score===undefined) {
             return (
                 <AuthErrorView/>
             )
         } else {
-            const daysAndAcc = GetDaysAndAcc(prediction);
-            const days = daysAndAcc[0];
-            const accuracy = daysAndAcc[1];
+            const days = GetDays(score);
 
-            if (days==='[error]' || accuracy===null) {
+            if (days==='[error]' || accuracy===undefined) {
                 return (
                     <AuthErrorView/>
                 )
@@ -46,7 +41,7 @@ class AuthResults extends React.Component {
                 return (
                     <AuthResultsView img={img}
                                      days={days}
-                                     acc={accuracy}/>
+                                     accuracy={accuracy}/>
                 );
             }
         }

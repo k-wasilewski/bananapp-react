@@ -67,7 +67,6 @@ class InstantHome extends Component {
         }
 
         reader.readAsDataURL(event.target.files[0])
-
     }
 
     submitLoading = () => {
@@ -99,7 +98,7 @@ class InstantHome extends Component {
                     $this.handleError();
                 } else {
                     $this.setState({
-                        prediction: request.response,
+                        prediction: JSON.parse(request.response),
                         redirect: true
                     });
                 }

@@ -3,7 +3,8 @@ import axios from 'axios';
 import AuthPersonalBananasView from './views/AuthPersonalBananasView';
 import {setUsername} from '../../../redux/actions';
 import {connect} from 'react-redux';
-import GetDaysAndAcc from "../../../func/GetDaysAndAcc";
+import GetDaysAndAcc from "../../../func/GetDays";
+import GetDays from "../../../func/GetDays";
 
 class AuthPersonalBananas extends React.Component {
 
@@ -38,33 +39,29 @@ class AuthPersonalBananas extends React.Component {
             })
     }
 
-    getImgPred = (path) => {
+    getImgPred = (img) => {
         const $this = this;
         const username = this.props.username;
 
-        const regexFilename = new RegExp('^(.*?),,,');
-        const filename = regexFilename.exec(path);
-        const regexUrl = new RegExp(',,,(.*?)$');
-        const url = regexUrl.exec(path);
+        const filename = img.filename;
+        const url = img.link;
 
         axios.post('http://localhost:8081/auth/imgpred',
-            `filename=${filename[1]}&username=${username}`,
+            `filename=${filename}&username=${username}`,
             {withCredentials: true}
         ).then(function (response) {
             if (response.status === 200) {
                 const prediction = response.data;
-                const scoreRegex = /score:(.*?),/;
-                const score = scoreRegex.exec(prediction);
+                const score = prediction.score;
 
-                if (score!==null) {
-                    const daysAndAcc = GetDaysAndAcc(prediction);
-                    const days = daysAndAcc[0];
-                    const accuracy = daysAndAcc[1];
+                if (score!==undefined) {
+                    const days = GetDays(score);
+                    const accuracy = prediction.accuracy;
 
-                    if (accuracy!==null) {
+                    if (accuracy!==undefined) {
                         $this.setState({
                             pred: days+' for '+Number((accuracy*100).toFixed(2)) +'%'
-                        }, function() { $this.IMAGESpush(url[1]) } );
+                        }, function() { $this.IMAGESpush(url) } );
                     }
                 }
             }
@@ -84,11 +81,11 @@ class AuthPersonalBananas extends React.Component {
     }
 
     imgList = () => {
-        const imgpaths = this.state.images;
+        const imgs = this.state.images;
 
-        for (let i = 0; i < imgpaths.length; i++) {
-            const path = imgpaths[i]
-            this.getImgPred(path);
+        for (let i = 0; i < imgs.length; i++) {
+            const img = JSON.parse(imgs[i])
+            this.getImgPred(img);
         }
     };
 
@@ -96,15 +93,10 @@ class AuthPersonalBananas extends React.Component {
         const username = this.props.username;
 
         if (window.confirm(`Are you sure you want to delete banana number ${this.state.currentImage+1}?`)) {
-            const filenameRegex =
-                (this.state.images[this.state.currentImage].includes('jpg')) ?
-                /(.*?).jpg/
-                :
-                /(.*?).jpeg/;
-            const filename = filenameRegex.exec(this.state.images[this.state.currentImage]);
+            const filename = JSON.parse(this.state.images[this.state.currentImage]).filename;
 
             axios.post('http://localhost:8081/auth/del',
-                `filename=${filename[0]}&username=${username}`,
+                `filename=${filename}&username=${username}`,
                 {withCredentials: true}
             );
 

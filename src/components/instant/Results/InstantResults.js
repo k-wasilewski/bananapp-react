@@ -2,7 +2,7 @@ import React from 'react';
 import '../../../css/App.css';
 import InstantResultsErrorView from './views/InstantResultsErrorView';
 import InstantResultsOkView from './views/InstantResultsOkView';
-import GetDaysAndAcc from "../../../func/GetDaysAndAcc";
+import GetDays from "../../../func/GetDays";
 
 class InstantResults extends React.Component {
 
@@ -11,19 +11,17 @@ class InstantResults extends React.Component {
 
         const prediction = this.props.location.state.prediction;
 
-        const scoreRegex = /score:(.*?),/;
-        const score = scoreRegex.exec(prediction);
+        const accuracy = prediction.accuracy;
+        const score = prediction.score;
 
-        if (score===null) {
+        if (score===undefined) {
             return (
                 <InstantResultsErrorView/>
             )
         } else {
-            const daysAndAcc = GetDaysAndAcc(prediction);
-            const days = daysAndAcc[0];
-            const accuracy = daysAndAcc;
+            const days = GetDays(score);
 
-            if (days==='[error]' || accuracy===null) {
+            if (days==='[error]' || accuracy===undefined) {
                 return (
                     <InstantResultsErrorView/>
                 )
