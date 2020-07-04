@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App rendering specification App is rendered 1`] = `
+<div
+  className="App"
+>
+  <div
+    className="App"
+  >
+    <header
+      className="App-header"
+    >
+      <div
+        className="App-break"
+      />
+      <img
+        alt="logo"
+        className="App-logo"
+        src={Object {}}
+      />
+      <div
+        className="App-break"
+      />
+      <img
+        alt="logo-title"
+        src={Object {}}
+      />
+      <div />
+      <button
+        onClick={[Function]}
+        variant="outlined"
+      >
+        Register
+      </button>
+      <div />
+      <button
+        onClick={[Function]}
+        variant="outlined"
+      >
+        Log-in
+      </button>
+      <div />
+      <input
+        name="avatar"
+        onChange={[Function]}
+        type="file"
+      />
+      <button
+        onClick={[Function]}
+        type="button"
+      >
+         Upload
+      </button>
+      <div />
+      <div />
+      <div
+        className="previewText image-container"
+      >
+        Select a jpg image (max filesize 1 MB) to check your banana
+      </div>
+      <div
+        className="App-break"
+      />
+      <a
+        href="/about"
+        onClick={[Function]}
+      >
+        <button
+          variant="outlined"
+        >
+          About
+        </button>
+      </a>
+    </header>
+  </div>
+</div>
+`;
