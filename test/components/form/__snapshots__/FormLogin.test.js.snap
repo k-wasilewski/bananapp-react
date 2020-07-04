@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormLogin rendering specification FormLogin is rendered 1`] = `
+<form
+  noValidate={true}
+  onSubmit={[Function]}
+>
+  <div />
+  <div
+    className="demo-form-group "
+  >
+    <label
+      className="demo-label"
+      htmlFor="formiz-field-id-ce844gf3e"
+    >
+      E-mail: 
+    </label>
+    <input
+      aria-describedby={null}
+      aria-invalid={false}
+      aria-required={false}
+      className="demo-input"
+      id="formiz-field-id-ce844gf3e"
+      onBlur={[Function]}
+      onChange={[Function]}
+      type="text"
+      value=""
+    />
+  </div>
+  <div
+    className="demo-form-group "
+  >
+    <label
+      className="demo-label"
+      htmlFor="formiz-field-id-rddks2ga1"
+    >
+      Password: 
+    </label>
+    <input
+      aria-describedby={null}
+      aria-invalid={false}
+      aria-required={false}
+      className="demo-input"
+      id="formiz-field-id-rddks2ga1"
+      onBlur={[Function]}
+      onChange={[Function]}
+      type="password"
+      value=""
+    />
+  </div>
+  <button
+    className="formBtn"
+    disabled={false}
+    type="submit"
+  >
+    Submit
+  </button>
+</form>
+`;
