@@ -96,7 +96,7 @@ class InstantHome extends Component {
             request.onload = function() {
                 const response = request.response.trim();
 
-                if (response==0 || response=='fail') {
+                if (response===0 || response==='fail') {
                     $this.handleError();
                 } else {
                     $this.setState({

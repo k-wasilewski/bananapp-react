@@ -3,7 +3,6 @@ import axios from 'axios';
 import AuthPersonalBananasView from './views/AuthPersonalBananasView';
 import {setUsername} from '../../../redux/actions';
 import {connect} from 'react-redux';
-import GetDaysAndAcc from "../../../func/GetDays";
 import GetDays from "../../../func/GetDays";
 
 class AuthPersonalBananas extends React.Component {
