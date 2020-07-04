@@ -7,12 +7,18 @@ import GetDays from "../../../func/GetDays";
 class InstantResults extends React.Component {
 
     render() {
-        const img = this.props.location.state.img;
+        let img;
+        if (this.props.location.state!==undefined)
+            img = this.props.location.state.img;
 
-        const prediction = this.props.location.state.prediction;
-
-        const accuracy = prediction.accuracy;
-        const score = prediction.score;
+        let prediction;
+        let accuracy;
+        let score;
+        if (this.props.location.state!==undefined) {
+            prediction = this.props.location.state.prediction;
+            accuracy = prediction.accuracy;
+            score = prediction.score;
+        }
 
         if (score===undefined) {
             return (

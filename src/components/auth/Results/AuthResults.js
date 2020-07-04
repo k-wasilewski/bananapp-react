@@ -16,13 +16,24 @@ class AuthResults extends React.Component {
 
 
     render() {
-        const img = this.props.location.state.img;
-        const prediction = this.props.location.state.prediction;
-        const username = this.props.location.state.username;
+        let img;
+        if (this.props.location.state!==undefined)
+            img = this.props.location.state.img;
 
-        const accuracy = prediction.accuracy;
-        const score = prediction.score;
-        const filename = prediction.filename;
+        let prediction;
+        if (this.props.location.state!==undefined)
+            prediction = this.props.location.state.prediction;
+
+        let username;
+        let accuracy;
+        let score;
+        let filename;
+        if (this.props.location.state!==undefined) {
+            prediction = this.props.location.state.prediction;
+            accuracy = prediction.accuracy;
+            score = prediction.score;
+            filename = prediction.filename;
+        }
 
         if (score===undefined) {
             return (
