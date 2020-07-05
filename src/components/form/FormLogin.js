@@ -40,13 +40,14 @@ export const FormLogin = () => {
             <Formiz connect={myForm} onValidSubmit={handleSubmit}>
                 <form noValidate onSubmit={myForm.submit}>
                     {errorMsg}
-                    <FormField name='email' label='E-mail: ' validations=
+                    <FormField name='email' label='E-mail: ' id='emailField' validations=
                         {[{
                                 rule: isEmail(),
                                 message: 'This is not a valid email',
                             }]}
                     />
-                    <FormField name='password' label='Password: ' type='password' />
+                    <FormField name='password' label='Password: ' id='passwordField'
+                               type='password' />
                     <button className='formBtn' type='submit' disabled={!myForm.isValid}>
                         Submit
                     </button>
