@@ -2,22 +2,22 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import store from '../../../src/redux/store';
 import {BrowserRouter} from "react-router-dom";
-import {FormLogin} from "../../../src/components/form/FormLogin";
+import {FormRegister} from "../../../src/components/form/FormRegister";
 import {Provider} from "react-redux";
 import {configure} from 'enzyme';
 import Adapter from "enzyme-adapter-react-16";
 import {mount} from "enzyme";
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
-import {Redirect} from 'react-router-dom';
 import { act } from "react-dom/test-utils";
+import { fireEvent } from "@testing-library/react";
 
-describe("FormLogin rendering specification", () => {
-    it('FormLogin is rendered', () => {
+describe("FormRegister rendering specification", () => {
+    it('FormRegister is rendered', () => {
         const component = renderer.create(
             <Provider store={store}>
                 <BrowserRouter>
-                    <FormLogin/>
+                    <FormRegister/>
                 </BrowserRouter>
             </Provider>
         );
@@ -26,7 +26,7 @@ describe("FormLogin rendering specification", () => {
     });
 });
 
-describe("FormLogin functional specification", () => {
+describe("FormRegister functional specification", () => {
     let component;
 
     beforeEach(() => {
@@ -37,26 +37,14 @@ describe("FormLogin functional specification", () => {
         component.unmount();
     });
 
-    it('renders form initially', () => {
-        component = mount(
-            <Provider store={store}>
-                <FormLogin/>
-            </Provider>
-        );
-
-        expect(component.find(<form/>)).not.toBeNull();
-    });
-
-    it('renders Redirect when state value redirect equals "success"', (done) => {
+    it('renders success msg when state value redirect equals "success"', (done) => {
         const mock = new MockAdapter(axios);
         const okResp = 'success';
         mock.onPost().reply(200, okResp);
 
         component = mount(
             <Provider store={store}>
-                <BrowserRouter>
-                    <FormLogin/>
-                </BrowserRouter>
+                <FormRegister/>
             </Provider>
         );
 
@@ -70,7 +58,8 @@ describe("FormLogin functional specification", () => {
         component.update();
 
         setTimeout(function () {
-            expect(window.location.href).toContain('success');
+            expect(component.find('#msg').html())
+                .toContain('Registration success');
             done();
         }, 500);
     });
@@ -82,9 +71,7 @@ describe("FormLogin functional specification", () => {
 
         component = mount(
             <Provider store={store}>
-                <BrowserRouter>
-                    <FormLogin/>
-                </BrowserRouter>
+                <FormRegister/>
             </Provider>
         );
 
@@ -98,8 +85,8 @@ describe("FormLogin functional specification", () => {
         component.update();
 
         setTimeout(function () {
-            expect(component.find('#errorMsg').html())
-                .toContain('Login failed');
+            expect(component.find('#msg').html())
+                .toContain('Registration failed');
             done();
         }, 500);
     });

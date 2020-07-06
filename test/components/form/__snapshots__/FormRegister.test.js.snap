@@ -1,0 +1,88 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FormRegister rendering specification FormRegister is rendered 1`] = `
+Array [
+  <div
+    id="msg"
+  >
+    
+  </div>,
+  <form
+    id="form"
+    noValidate={true}
+    onSubmit={[Function]}
+  >
+    <div
+      className="demo-form-group "
+    >
+      <label
+        className="demo-label"
+        htmlFor="formiz-field-id-jvf2h7ld8"
+      >
+        E-mail: 
+      </label>
+      <input
+        aria-describedby={null}
+        aria-invalid={false}
+        aria-required={false}
+        className="demo-input"
+        id="formiz-field-id-jvf2h7ld8"
+        onBlur={[Function]}
+        onChange={[Function]}
+        type="text"
+        value=""
+      />
+    </div>
+    <div
+      className="demo-form-group "
+    >
+      <label
+        className="demo-label"
+        htmlFor="formiz-field-id-vvtqtbfo0"
+      >
+        Password: 
+      </label>
+      <input
+        aria-describedby={null}
+        aria-invalid={false}
+        aria-required={false}
+        className="demo-input"
+        id="formiz-field-id-vvtqtbfo0"
+        onBlur={[Function]}
+        onChange={[Function]}
+        type="password"
+        value=""
+      />
+    </div>
+    <div
+      className="demo-form-group "
+    >
+      <label
+        className="demo-label"
+        htmlFor="formiz-field-id-2honfwith"
+      >
+        Confirm password: 
+      </label>
+      <input
+        aria-describedby={null}
+        aria-invalid={false}
+        aria-required={false}
+        className="demo-input"
+        id="formiz-field-id-2honfwith"
+        onBlur={[Function]}
+        onChange={[Function]}
+        type="password"
+        value=""
+      />
+    </div>
+    <button
+      className="formBtn"
+      disabled={false}
+      id="submit"
+      type="submit"
+    >
+      Submit
+    </button>
+  </form>,
+]
+`;

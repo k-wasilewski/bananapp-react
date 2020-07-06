@@ -10,8 +10,9 @@ export const FormLogin = () => {
 
     const myForm = useForm();
 
-    const [redirect, setRedirect] = useState(0);
+    const [redir, setRedir] = useState(0);
     const [username, setUsername] = useState(0);
+    const [errorMsg, setErrorMsg] = useState('');
 
     const handleSubmit = (values) => {
         axios.post('http://localhost:8081',
@@ -20,9 +21,11 @@ export const FormLogin = () => {
         ).then(function (response) {
             if (response.data === 'success') {
                 setUsername(values.email);
-                setRedirect('success');
+                setRedir('success');
+                setErrorMsg('');
             } else {
-                setRedirect('fail');
+                setRedir('fail');
+                setErrorMsg('Login failed');
             }
         });
         axios.post('http://localhost:8082/auth/user',
@@ -30,16 +33,11 @@ export const FormLogin = () => {
         );
     };
 
-    const errorMsg = (redirect !== 'success' && redirect !== 0) ?
-        (<div>Login failed</div>)
-        :
-        (<div/>);
-
-    if (redirect !== 'success') {
+    if (redir !== 'success') {
         return (
             <Formiz connect={myForm} onValidSubmit={handleSubmit}>
-                <form noValidate onSubmit={myForm.submit}>
-                    {errorMsg}
+                <form noValidate onSubmit={myForm.submit} id='form'>
+                    <div id='errorMsg'>{errorMsg}</div>
                     <FormField name='email' label='E-mail: ' id='emailField' validations=
                         {[{
                                 rule: isEmail(),
@@ -48,13 +46,14 @@ export const FormLogin = () => {
                     />
                     <FormField name='password' label='Password: ' id='passwordField'
                                type='password' />
-                    <button className='formBtn' type='submit' disabled={!myForm.isValid}>
+                    <button className='formBtn' type='submit' id='submit'
+                            disabled={!myForm.isValid}>
                         Submit
                     </button>
                 </form>
             </Formiz>
         );
-    } else if (redirect === 'success') {
+    } else if (redir === 'success') {
         return (<Redirect to={{
             pathname: '/success',
             state: {username: username}}}/>
