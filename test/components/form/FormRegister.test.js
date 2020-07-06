@@ -9,8 +9,6 @@ import Adapter from "enzyme-adapter-react-16";
 import {mount} from "enzyme";
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
-import { act } from "react-dom/test-utils";
-import { fireEvent } from "@testing-library/react";
 
 describe("FormRegister rendering specification", () => {
     it('FormRegister is rendered', () => {
@@ -28,6 +26,7 @@ describe("FormRegister rendering specification", () => {
 
 describe("FormRegister functional specification", () => {
     let component;
+    const error = console.error;
 
     beforeEach(() => {
         configure({adapter: new Adapter()});
@@ -35,6 +34,14 @@ describe("FormRegister functional specification", () => {
 
     afterEach(() => {
         component.unmount();
+    });
+
+    beforeAll(() => {//suppress Warning: An update to FormLogin inside a test was not wrapped in act(...).
+        console.error = jest.fn();
+    });
+
+    afterAll(() => {
+        console.error = error;
     });
 
     it('renders success msg when state value redirect equals "success"', (done) => {
@@ -52,9 +59,7 @@ describe("FormRegister functional specification", () => {
         const password = "test";
         component.find('#emailField').simulate('change', { target: { value: email } });
         component.find('#passwordField').simulate('change', { target: { value: password } });
-        act(() => {
-            component.find('#form').at(0).simulate('submit');
-        });
+        component.find('#form').at(0).simulate('submit');
         component.update();
 
         setTimeout(function () {
@@ -79,9 +84,7 @@ describe("FormRegister functional specification", () => {
         const password = "test";
         component.find('#emailField').simulate('change', { target: { value: email } });
         component.find('#passwordField').simulate('change', { target: { value: password } });
-        act(() => {
-            component.find('#form').at(0).simulate('submit');
-        });
+        component.find('#form').at(0).simulate('submit');
         component.update();
 
         setTimeout(function () {

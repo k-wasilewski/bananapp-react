@@ -9,8 +9,6 @@ import Adapter from "enzyme-adapter-react-16";
 import {mount} from "enzyme";
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
-import {Redirect} from 'react-router-dom';
-import { act } from "react-dom/test-utils";
 
 describe("FormLogin rendering specification", () => {
     it('FormLogin is rendered', () => {
@@ -28,6 +26,7 @@ describe("FormLogin rendering specification", () => {
 
 describe("FormLogin functional specification", () => {
     let component;
+    const error = console.error;
 
     beforeEach(() => {
         configure({adapter: new Adapter()});
@@ -35,6 +34,14 @@ describe("FormLogin functional specification", () => {
 
     afterEach(() => {
         component.unmount();
+    });
+
+    beforeAll(() => {//suppress Warning: An update to FormLogin inside a test was not wrapped in act(...).
+        console.error = jest.fn();
+    });
+
+    afterAll(() => {
+        console.error = error;
     });
 
     it('renders form initially', () => {
@@ -64,9 +71,7 @@ describe("FormLogin functional specification", () => {
         const password = "test";
         component.find('#emailField').simulate('change', { target: { value: email } });
         component.find('#passwordField').simulate('change', { target: { value: password } });
-        act(() => {
-            component.find('#form').at(0).simulate('submit');
-        });
+        component.find('#form').at(0).simulate('submit');
         component.update();
 
         setTimeout(function () {
@@ -92,9 +97,7 @@ describe("FormLogin functional specification", () => {
         const password = "test";
         component.find('#emailField').simulate('change', { target: { value: email } });
         component.find('#passwordField').simulate('change', { target: { value: password } });
-        act(() => {
-            component.find('#form').at(0).simulate('submit');
-        });
+        component.find('#form').at(0).simulate('submit');
         component.update();
 
         setTimeout(function () {
