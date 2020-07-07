@@ -7,7 +7,7 @@ import AuthLogoutView from './views/AuthLogoutView';
 import { connect } from 'react-redux';
 import {setUsername} from '../../../redux/actions';
 
-class AuthSuccess extends Component {
+export class AuthSuccess extends Component {
 
     constructor(){
         super();
@@ -23,7 +23,7 @@ class AuthSuccess extends Component {
         }
     }
 
-    logout = () => {
+    logout() {
         axios.get('http://localhost:8081/logout',
             {withCredentials: true})
             .then((response) => {
