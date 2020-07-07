@@ -16,7 +16,7 @@ exports[`FormLogin rendering specification FormLogin is rendered 1`] = `
   >
     <label
       className="demo-label"
-      htmlFor="formiz-field-id-g4fdmt5nl"
+      htmlFor="formiz-field-id-pb9j7o7py"
     >
       E-mail: 
     </label>
@@ -25,7 +25,7 @@ exports[`FormLogin rendering specification FormLogin is rendered 1`] = `
       aria-invalid={false}
       aria-required={false}
       className="demo-input"
-      id="formiz-field-id-g4fdmt5nl"
+      id="formiz-field-id-pb9j7o7py"
       onBlur={[Function]}
       onChange={[Function]}
       type="text"
@@ -37,7 +37,7 @@ exports[`FormLogin rendering specification FormLogin is rendered 1`] = `
   >
     <label
       className="demo-label"
-      htmlFor="formiz-field-id-no9pb0125"
+      htmlFor="formiz-field-id-xvpsvptpb"
     >
       Password: 
     </label>
@@ -46,7 +46,7 @@ exports[`FormLogin rendering specification FormLogin is rendered 1`] = `
       aria-invalid={false}
       aria-required={false}
       className="demo-input"
-      id="formiz-field-id-no9pb0125"
+      id="formiz-field-id-xvpsvptpb"
       onBlur={[Function]}
       onChange={[Function]}
       type="password"
