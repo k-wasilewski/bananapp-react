@@ -27,7 +27,7 @@ class InstantHome extends Component {
         this.submitLoading = this.submitLoading.bind(this);
     }
 
-    doRegister = () => {
+    doRegister() {
         if (!this.state.register) {
             this.setState({
                 register: true,
@@ -37,7 +37,7 @@ class InstantHome extends Component {
         else this.setState({register: false});
     }
 
-    doLogin = () => {
+    doLogin() {
         if (!this.state.login) {
             this.setState({
                 login: true,
@@ -47,7 +47,13 @@ class InstantHome extends Component {
         else this.setState({login: false});
     }
 
-    fileChangedHandler = event => {
+    setImagePreview(result) {
+        this.setState({
+            imagePreviewUrl: result
+        });
+    }
+
+    fileChangedHandler(event) {
         if (event.target.files[0].size>1024*1024) {
             this.setState({
                 selectedFile: null
@@ -60,30 +66,26 @@ class InstantHome extends Component {
 
         const reader = new FileReader();
 
-        reader.onloadend = () => {
-            this.setState({
-                imagePreviewUrl: reader.result
-            });
-        }
+        reader.onloadend = () => this.setImagePreview(reader.result);
 
         reader.readAsDataURL(event.target.files[0]);
     }
 
-    submitLoading = () => {
+    submitLoading() {
         this.loading();
         setTimeout( () => {
             this.submit();
         }, 500);
     }
 
-    handleError = () => {
+    handleError() {
         this.setState({
             error: true,
             loading: false
         });
     }
 
-    submit = () => {
+    submit() {
         const $this = this;
 
         if (this.state.selectedFile!==null) {
@@ -102,6 +104,7 @@ class InstantHome extends Component {
                     $this.setState({
                         prediction: JSON.parse(response),
                         redirect: true
+                    }, function () {
                     });
                 }
             }
@@ -112,7 +115,7 @@ class InstantHome extends Component {
         }
     }
 
-    loading = () => {
+    loading() {
         this.setState({loading: true});
     }
 
@@ -127,15 +130,14 @@ class InstantHome extends Component {
                 </div>);
 
         const formRegister = ( this.state.register ) ?
-            (<div>
-                    <FormRegister />
-                </div>)
+            (<FormRegister />)
             :
             (<div />);
 
         const formLogin = ( this.state.login ) ? (<FormLogin/>) : (<div />);
 
-        const logoutMessage = ( this.props.location.state !== undefined &&
+        const logoutMessage = ( this.props.location!==undefined &&
+            this.props.location.state !== undefined &&
             this.props.location.state.logout !== undefined ) ?
                 (<div>Successfully logged out</div>) : (<div />);
 
