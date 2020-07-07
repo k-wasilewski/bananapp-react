@@ -20,25 +20,25 @@ class AuthHome extends React.Component {
         this.submitLoading = this.submitLoading.bind(this);
     }
 
-    submitLoading = () => {
+    submitLoading() {
         this.loading();
         setTimeout( () => {
             this.submit();
         }, 500);
     }
 
-    loading = () => {
+    loading() {
         this.setState({loading: true});
     }
 
-    handleError = () => {
+    handleError() {
         this.setState({
             error: true,
             loading: false
         });
     }
 
-    submit = () => {
+    submit() {
         const $this = this;
 
         if (this.state.selectedFile!==null) {
@@ -66,7 +66,13 @@ class AuthHome extends React.Component {
         }
     }
 
-    fileChangedHandler = event => {
+    setImagePreview(result) {
+        this.setState({
+            imagePreviewUrl: result
+        });
+    }
+
+    fileChangedHandler(event) {
         if (event.target.files[0].size>1024*1024) {
             this.setState({
                 selectedFile: null
@@ -79,11 +85,8 @@ class AuthHome extends React.Component {
 
         const reader = new FileReader();
 
-        reader.onloadend = () => {
-            this.setState({
-                imagePreviewUrl: reader.result
-            });
-        }
+        reader.onloadend = () => this.setImagePreview(reader.result);
+
         reader.readAsDataURL(event.target.files[0]);
     }
 
@@ -100,9 +103,7 @@ class AuthHome extends React.Component {
             </div>);
 
         const loadingComponent = (this.state.loading) ?
-            (<div>
-                <Loading/>
-            </div>)
+            (<Loading/>)
             :
             (<div />);
 

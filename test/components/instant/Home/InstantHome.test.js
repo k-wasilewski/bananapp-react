@@ -328,7 +328,7 @@ describe("InstantHome functional specification", () => {
         }, 500);
     });
 
-    it('handleError() sets state values error to true and redirect to false',
+    it('handleError() sets state values error to true and loading to false',
         (done) => {
         component = mount(
             <Provider store={store}>
