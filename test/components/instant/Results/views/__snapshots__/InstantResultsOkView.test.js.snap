@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InstantResultsOkView rendering specification InstantResultsOkView is rendered 1`] = `
+<div
+  className="App"
+>
+  <header
+    className="App-header"
+  >
+    <img
+      alt="your banana"
+      className="img"
+    />
+    <h3>
+       Your banana is 
+       old, 
+    </h3>
+    <h3>
+       with 
+      NaN
+      % certainty
+    </h3>
+    <a
+      href="/"
+      onClick={[Function]}
+    >
+      <button
+        variant="outlined"
+      >
+        Back
+      </button>
+    </a>
+  </header>
+</div>
+`;
