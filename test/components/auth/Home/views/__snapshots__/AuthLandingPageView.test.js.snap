@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AuthLandingPageView rendering specification AuthLandingPageView is rendered 1`] = `
+<div>
+  <header>
+    <input
+      name="avatar"
+      type="file"
+    />
+    <button
+      type="button"
+    >
+       Upload 
+    </button>
+  </header>
+</div>
+`;
