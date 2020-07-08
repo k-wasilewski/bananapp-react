@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AuthResultsView rendering specification AuthResultsView is rendered 1`] = `
+<div
+  className="App"
+>
+  <header
+    className="App-header"
+  >
+    <img
+      alt="your banana"
+      className="img"
+    />
+    <h3>
+       Your banana is 
+       old, 
+    </h3>
+    <h3>
+       with 
+      NaN
+      % certainty
+    </h3>
+    <a
+      href="/success"
+      onClick={[Function]}
+    >
+      <button
+        variant="outlined"
+      >
+        Back
+      </button>
+    </a>
+  </header>
+</div>
+`;
