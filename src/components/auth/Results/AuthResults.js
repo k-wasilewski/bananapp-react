@@ -4,15 +4,17 @@ import axios from 'axios';
 import AuthErrorView from './views/AuthErrorView';
 import AuthResultsView from './views/AuthResultsView';
 import GetDays from "../../../func/GetDays";
+import {connect} from "react-redux";
 
-class AuthResults extends React.Component {
+export class AuthResults extends React.Component {
 
-    saveimg = (score, acc, filename, username, pic_link) => {
+    saveimg(score, acc, filename, username, pic_link) {
         axios.post('http://localhost:8081/auth/saveimg',
             `filename=${filename}&score=${score}&acc=${acc}
             &uname=${username}&link=${pic_link.split('+').join('plussign')}`,
             {withCredentials: true}
-        )};
+        ).catch(() => {console.error('Error saving img at server')});
+    };
 
 
     render() {
@@ -24,7 +26,6 @@ class AuthResults extends React.Component {
         if (this.props.location.state!==undefined)
             prediction = this.props.location.state.prediction;
 
-        let username;
         let accuracy;
         let score;
         let filename;
@@ -47,7 +48,7 @@ class AuthResults extends React.Component {
                     <AuthErrorView/>
                 );
             } else {
-                this.saveimg(score, accuracy, filename, username, img);
+                this.saveimg(score, accuracy, filename, this.props.username, img);
 
                 return (
                     <AuthResultsView img={img}
@@ -58,4 +59,11 @@ class AuthResults extends React.Component {
         }
     }
 }
-export default AuthResults;
+
+function mapStateToProps(state) {
+    return {
+        username: state.setUsernameReducer.username,
+    };
+};
+
+export default connect(mapStateToProps, null)(AuthResults);
