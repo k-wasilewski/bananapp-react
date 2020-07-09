@@ -5,7 +5,7 @@ import {setUsername} from '../../../redux/actions';
 import {connect} from 'react-redux';
 import GetDays from "../../../func/GetDays";
 
-class AuthPersonalBananas extends React.Component {
+export class AuthPersonalBananas extends React.Component {
 
     constructor(){
         super();
@@ -25,21 +25,24 @@ class AuthPersonalBananas extends React.Component {
     }
 
     componentDidMount() {
+        this.getFiles();
+    }
+
+    getFiles() {
         const $this = this;
 
         axios.get('http://localhost:8081/auth/files',
             {withCredentials: true})
             .then((response) => {
-                const imgs = response.data;
                 this.setState({
-                        images: imgs
+                        images: response.data
                     },
                     function() { $this.imgList() }
                 );
             });
     }
 
-    getImgPred = (img) => {
+    getImgPred(img) {
         const $this = this;
         const username = this.props.username;
 
@@ -68,7 +71,7 @@ class AuthPersonalBananas extends React.Component {
         });
     }
 
-    IMAGESpush = (path) => {
+    IMAGESpush(path) {
         const $this = this;
 
         const newIMAGE = {
@@ -80,7 +83,7 @@ class AuthPersonalBananas extends React.Component {
         this.setState({IMAGES: this.state.IMAGES.concat(newIMAGE)});
     }
 
-    imgList = () => {
+    imgList() {
         const imgs = this.state.images;
 
         for (let i = 0; i < imgs.length; i++) {

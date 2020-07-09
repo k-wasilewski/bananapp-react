@@ -17,7 +17,7 @@ Array [
     >
       <label
         className="demo-label"
-        htmlFor="formiz-field-id-tkc6zbnxk"
+        htmlFor="formiz-field-id-62sdp6ux5"
       >
         E-mail: 
       </label>
@@ -26,7 +26,7 @@ Array [
         aria-invalid={false}
         aria-required={false}
         className="demo-input"
-        id="formiz-field-id-tkc6zbnxk"
+        id="formiz-field-id-62sdp6ux5"
         onBlur={[Function]}
         onChange={[Function]}
         type="text"
@@ -38,7 +38,7 @@ Array [
     >
       <label
         className="demo-label"
-        htmlFor="formiz-field-id-5zo32pnsy"
+        htmlFor="formiz-field-id-ktrli59qq"
       >
         Password: 
       </label>
@@ -47,7 +47,7 @@ Array [
         aria-invalid={false}
         aria-required={false}
         className="demo-input"
-        id="formiz-field-id-5zo32pnsy"
+        id="formiz-field-id-ktrli59qq"
         onBlur={[Function]}
         onChange={[Function]}
         type="password"
@@ -59,7 +59,7 @@ Array [
     >
       <label
         className="demo-label"
-        htmlFor="formiz-field-id-8mufz3z57"
+        htmlFor="formiz-field-id-75iszt8e2"
       >
         Confirm password: 
       </label>
@@ -68,7 +68,7 @@ Array [
         aria-invalid={false}
         aria-required={false}
         className="demo-input"
-        id="formiz-field-id-8mufz3z57"
+        id="formiz-field-id-75iszt8e2"
         onBlur={[Function]}
         onChange={[Function]}
         type="password"

@@ -36,6 +36,7 @@ function createXHRmock(error) {
 
 describe("AuthHome functional specification", () => {
     let component;
+    const error = console.error;
 
     beforeEach(() => {
         configure({adapter: new Adapter()});
@@ -43,6 +44,14 @@ describe("AuthHome functional specification", () => {
 
     afterEach(() => {
         component.unmount();
+    });
+
+    beforeAll(() => {//suppress Network Error in AuthPersonalBananas
+        console.error = jest.fn();
+    });
+
+    afterAll(() => {
+        console.error = error;
     });
 
     it('renders AuthLandingPageView when state value redirect is false', (done) => {

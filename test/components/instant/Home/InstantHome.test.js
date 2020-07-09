@@ -11,6 +11,8 @@ import {BrowserRouter} from "react-router-dom";
 import Loading from "../../../../src/components/LoadingComponent";
 import {FormLogin} from "../../../../src/components/form/FormLogin";
 import {FormRegister} from "../../../../src/components/form/FormRegister";
+import axios from 'axios';
+import MockAdapter from 'axios-mock-adapter';
 
 let open, send, status, onload, setRequestHeader, response;
 function createXHRmock(error) {
@@ -38,13 +40,21 @@ function createXHRmock(error) {
 
 describe("InstantHome functional specification", () => {
     let component;
+    let mock;
 
     beforeEach(() => {
         configure({adapter: new Adapter()});
+
+        mock = new MockAdapter(axios);
+        const resp = 'mock';
+        mock.onGet('http://localhost:8081/auth/files')
+            .reply(200, resp);
     });
 
     afterEach(() => {
         component.unmount();
+
+        mock.restore();
     });
 
     it('renders InstantLandingPageView when state value redirect is false', (done) => {

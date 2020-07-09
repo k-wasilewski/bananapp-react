@@ -11,7 +11,6 @@ import AuthSuccess from "../../src/components/auth/Success/AuthSuccess";
 import AuthResults from "../../src/components/auth/Results/AuthResults";
 import AuthPersonalBananas from "../../src/components/auth/Personal-bananas/AuthPersonalBananas";
 import InstantAbout from "../../src/components/instant/InstantAbout";
-import {jest} from '@jest/globals';
 
 describe("Router functional specification", () => {
     let component;
