@@ -10,7 +10,6 @@ export class AuthPersonalBananas extends React.Component {
     constructor(){
         super();
         this.state = {
-            username: 0,
             images: 0,
             pred: 0,
             IMAGES: [],

@@ -1,11 +1,12 @@
 import logo from '../../../../jpg/logo0.jpg';
 import logoTitle from '../../../../jpg/logotitle.jpg';
-import {Link} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 import React, {Component} from 'react';
 
-class InstantLandingPageView extends Component {
+class InstantHomeView extends Component {
     render() {
-        return (
+        if (this.props.prediction===undefined && this.props.img===undefined)
+            return (
             <div className='App'>
                 <header className='App-header'>
                     <div className='App-break'/>
@@ -35,7 +36,14 @@ class InstantLandingPageView extends Component {
                 </header>
             </div>
         );
+        else return (
+            <Redirect to={{
+                pathname: '/results',
+                state: { prediction: this.props.prediction,
+                    img: this.props.img}
+            }}/>
+        );
     }
 }
 
-export default InstantLandingPageView;
+export default InstantHomeView;

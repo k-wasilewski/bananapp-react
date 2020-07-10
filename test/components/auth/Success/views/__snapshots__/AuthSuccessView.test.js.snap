@@ -8,46 +8,18 @@ exports[`AuthSuccessView rendering specification AuthSuccessView is rendered 1`]
     className="App-header"
   >
     <h3>
-       Logged-in as 
-      0
+       Login failed, try again
     </h3>
-    <div>
-      <header>
-        <input
-          name="avatar"
-          onChange={[Function]}
-          type="file"
-        />
-        <button
-          onClick={[Function]}
-          type="button"
-        >
-           Upload 
-        </button>
-        <div />
-        <div />
-        <div
-          className="previewText image-container"
-        >
-          Select a jpg image (max filesize 1 MB) to add a banana
-        </div>
-      </header>
-    </div>
     <a
-      href="/auth/personalBananas"
+      href="/"
       onClick={[Function]}
     >
       <button
         variant="outlined"
       >
-        Personal bananas
+        Back
       </button>
     </a>
-    <button
-      variant="outlined"
-    >
-      Logout
-    </button>
   </header>
 </div>
 `;

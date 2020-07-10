@@ -7,18 +7,8 @@ exports[`AuthResultsView rendering specification AuthResultsView is rendered 1`]
   <header
     className="App-header"
   >
-    <img
-      alt="your banana"
-      className="img"
-    />
     <h3>
-       Your banana is 
-       old, 
-    </h3>
-    <h3>
-       with 
-      NaN
-      % certainty
+      File type not supported or it's not a banana, try again
     </h3>
     <a
       href="/success"

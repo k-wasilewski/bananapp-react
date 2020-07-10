@@ -1,7 +1,6 @@
 import React from 'react';
 import '../../../css/App.css';
 import axios from 'axios';
-import AuthErrorView from './views/AuthErrorView';
 import AuthResultsView from './views/AuthResultsView';
 import GetDays from "../../../func/GetDays";
 import {connect} from "react-redux";
@@ -18,44 +17,29 @@ export class AuthResults extends React.Component {
 
 
     render() {
-        let img;
-        if (this.props.location.state!==undefined)
-            img = this.props.location.state.img;
+        const img = (this.props.location.state !== undefined) ?
+            this.props.location.state.img : undefined;
 
-        let prediction;
-        if (this.props.location.state!==undefined)
-            prediction = this.props.location.state.prediction;
+        const prediction = (this.props.location.state !== undefined) ?
+            this.props.location.state.prediction : undefined;
+        const accuracy = (this.props.location.state !== undefined) ?
+            prediction.accuracy : undefined;
+        const score = (this.props.location.state !== undefined) ?
+            prediction.score : undefined;
+        const filename = (this.props.location.state !== undefined) ?
+            prediction.filename : undefined;
+        const days = (score === undefined) ? undefined : GetDays(score);
 
-        let accuracy;
-        let score;
-        let filename;
-        if (this.props.location.state!==undefined) {
-            prediction = this.props.location.state.prediction;
-            accuracy = prediction.accuracy;
-            score = prediction.score;
-            filename = prediction.filename;
-        }
-
-        if (score===undefined) {
+        if (score === undefined || days === '[error]' || accuracy === undefined) return (
+            <AuthResultsView/>
+        );
+        else {
+            this.saveimg(score, accuracy, filename, this.props.username, img);
             return (
-                <AuthErrorView/>
+                <AuthResultsView img={img}
+                                 days={days}
+                                 accuracy={accuracy}/>
             );
-        } else {
-            const days = GetDays(score);
-
-            if (days==='[error]' || accuracy===undefined) {
-                return (
-                    <AuthErrorView/>
-                );
-            } else {
-                this.saveimg(score, accuracy, filename, this.props.username, img);
-
-                return (
-                    <AuthResultsView img={img}
-                                     days={days}
-                                     accuracy={accuracy}/>
-                );
-            }
         }
     }
 }

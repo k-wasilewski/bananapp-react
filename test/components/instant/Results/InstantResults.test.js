@@ -7,8 +7,7 @@ import {mount} from "enzyme";
 import {BrowserRouter} from "react-router-dom";
 import GetDays from "../../../../src/func/GetDays";
 import InstantResults from "../../../../src/components/instant/Results/InstantResults";
-import InstantResultsErrorView from "../../../../src/components/instant/Results/views/InstantResultsErrorView";
-import InstantResultsOkView from "../../../../src/components/instant/Results/views/InstantResultsOkView";
+import InstantResultsView from "../../../../src/components/instant/Results/views/InstantResultsView";
 
 describe("InstantResults functional specification", () => {
     let component;
@@ -31,10 +30,10 @@ describe("InstantResults functional specification", () => {
             </Provider>
         );
 
-        expect(component.find(InstantResultsErrorView)).toHaveLength(1);
+        expect(component.find(InstantResultsView)).toHaveLength(1);
     });
 
-    it('renders InstantResultsOkView when props location state prediction ' +
+    it('renders InstantResultsView when props location state prediction ' +
         'value is correct', () => {
         const correctPrediction = {score: 1.0, accuracy: 1.0};
 
@@ -46,10 +45,10 @@ describe("InstantResults functional specification", () => {
             </Provider>
         );
 
-        expect(component.find(InstantResultsOkView)).toHaveLength(1);
+        expect(component.find(InstantResultsView)).toHaveLength(1);
     });
 
-    it('passes img prop to InstantResultsOkView when props location state ' +
+    it('passes img prop to InstantResultsView when props location state ' +
         'img is not undefined', () => {
         const correctPrediction = {score: 1.0, accuracy: 1.0};
         const mockImg = 'img';
@@ -63,10 +62,10 @@ describe("InstantResults functional specification", () => {
             </Provider>
         );
 
-        expect(component.find(InstantResultsOkView).props().img).toEqual(mockImg);
+        expect(component.find(InstantResultsView).props().img).toEqual(mockImg);
     });
 
-    it('passes days prop to InstantResultsOkView when ' +
+    it('passes days prop to InstantResultsView when ' +
         'props location state prediction score is between 1 and 7', () => {
         const correctPrediction = {score: 1.0, accuracy: 1.0};
         const days = GetDays(correctPrediction.score);
@@ -79,10 +78,10 @@ describe("InstantResults functional specification", () => {
             </Provider>
         );
 
-        expect(component.find(InstantResultsOkView).props().days).toEqual(days);
+        expect(component.find(InstantResultsView).props().days).toEqual(days);
     });
 
-    it('passes accuracy prop to InstantResultsOkView when ' +
+    it('passes accuracy prop to InstantResultsView when ' +
         'props location state prediction accuracy is not undefined', () => {
         const correctPrediction = {score: 1.0, accuracy: 1.0};
 
@@ -94,7 +93,7 @@ describe("InstantResults functional specification", () => {
             </Provider>
         );
 
-        expect(component.find(InstantResultsOkView).props().accuracy)
+        expect(component.find(InstantResultsView).props().accuracy)
             .toEqual(correctPrediction.accuracy);
     });
 });

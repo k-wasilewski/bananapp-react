@@ -1,44 +1,31 @@
 import React from 'react';
 import '../../../css/App.css';
-import InstantResultsErrorView from './views/InstantResultsErrorView';
-import InstantResultsOkView from './views/InstantResultsOkView';
+import InstantResultsView from "./views/InstantResultsView";
 import GetDays from "../../../func/GetDays";
 
 class InstantResults extends React.Component {
 
     render() {
-        let img;
-        if (this.props.location.state!==undefined)
-            img = this.props.location.state.img;
+        const img = (this.props.location.state !== undefined) ?
+            this.props.location.state.img : undefined;
 
-        let prediction;
-        let accuracy;
-        let score;
-        if (this.props.location.state!==undefined) {
-            prediction = this.props.location.state.prediction;
-            accuracy = prediction.accuracy;
-            score = prediction.score;
-        }
+        const prediction = (this.props.location.state !== undefined) ?
+            this.props.location.state.prediction : undefined;
+        const accuracy = (this.props.location.state !== undefined) ?
+            prediction.accuracy : undefined;
+        const score = (this.props.location.state !== undefined) ?
+            prediction.score : undefined;
+        const days = (score === undefined) ? undefined : GetDays(score);
 
-        if (score===undefined) {
-            return (
-                <InstantResultsErrorView/>
-            );
-        } else {
-            const days = GetDays(score);
-
-            if (days==='[error]' || accuracy===undefined) {
-                return (
-                    <InstantResultsErrorView/>
-                );
-            } else {
-                return (
-                    <InstantResultsOkView img={img}
-                                          days={days}
-                                          accuracy={accuracy}/>
-                );
-            }
-        }
-    }
+        if (score === undefined || days === '[error]' || accuracy === undefined) return (
+            <InstantResultsView/>
+        );
+        else return (
+            <InstantResultsView img={img}
+                                days={days}
+                                accuracy={accuracy}/>
+        );
+    };
 }
+
 export default InstantResults;

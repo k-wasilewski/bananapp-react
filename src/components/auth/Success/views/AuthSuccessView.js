@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 import AuthHome from '../../Home/AuthHome';
 import {setUsername} from '../../../../redux/actions';
 import { connect } from 'react-redux';
@@ -8,16 +8,14 @@ class AuthSuccessView extends Component {
     render() {
         const $this = this;
 
-        return (
+        if (this.props.username!==undefined && this.props.logout!==undefined)
+            return (
             <div className='App'>
                 <header className='App-header'>
                     <h3> Logged-in as { this.props.username }</h3>
-                    <AuthHome username={this.props.username}/>
+                    <AuthHome />
                     <Link to={{
-                        pathname: '/auth/personalBananas',
-                        state: {
-                            username: $this.props.username
-                        }
+                        pathname: '/auth/personalBananas'
                     }}>
                         <button variant='outlined'>
                             Personal bananas
@@ -29,6 +27,21 @@ class AuthSuccessView extends Component {
                 </header>
             </div>
         );
+        else if (this.props.isLogout===true)
+            return (<Redirect to={{
+                pathname: '/',
+                state: { logout: true }
+            }}/>)
+        else return (<div className='App'>
+                <header className='App-header'>
+                    <h3> Login failed, try again</h3>
+                    <Link to='/'>
+                        <button variant='outlined'>
+                            Back
+                        </button>
+                    </Link>
+                </header>
+            </div>);
     }
 }
 

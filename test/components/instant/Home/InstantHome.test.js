@@ -1,8 +1,7 @@
 import React from 'react';
 import store from '../../../../src/redux/store';
 import InstantHome from "../../../../src/components/instant/Home/InstantHome";
-import InstantLandingPageView from "../../../../src/components/instant/Home/views/InstantLandingPageView";
-import InstantHomeRedirectView from "../../../../src/components/instant/Home/views/InstantHomeRedirectView";
+import InstantHomeView from "../../../../src/components/instant/Home/views/InstantHomeView";
 import {Provider} from "react-redux";
 import {configure} from 'enzyme';
 import Adapter from "enzyme-adapter-react-16";
@@ -57,7 +56,7 @@ describe("InstantHome functional specification", () => {
         mock.restore();
     });
 
-    it('renders InstantLandingPageView when state value redirect is false', (done) => {
+    it('renders InstantHomeView when state value redirect is false', (done) => {
         component = mount(
             <Provider store={store}>
                 <BrowserRouter>
@@ -70,12 +69,12 @@ describe("InstantHome functional specification", () => {
         component.update();
 
         setTimeout(function () {
-            expect(component.find(InstantLandingPageView)).toHaveLength(1);
+            expect(component.find(InstantHomeView)).toHaveLength(1);
             done();
         }, 500);
     });
 
-    it('renders InstantHomeRedirectView when state values redirect is true and' +
+    it('renders InstantHomeView when state values redirect is true and' +
         'error is false', (done) => {
         component = mount(
             <Provider store={store}>
@@ -89,12 +88,12 @@ describe("InstantHome functional specification", () => {
         component.update();
 
         setTimeout(function () {
-            expect(component.find(InstantHomeRedirectView)).toHaveLength(1);
+            expect(component.find(InstantHomeView)).toHaveLength(1);
             done();
         }, 500);
     });
 
-    it('passes error msg prop to InstantLandingPageView when state value' +
+    it('passes error msg prop to InstantHomeView when state value' +
         ' error is true', (done) => {
         component = mount(
             <Provider store={store}>
@@ -108,13 +107,13 @@ describe("InstantHome functional specification", () => {
         component.update();
 
         setTimeout(function () {
-            expect(component.find(InstantLandingPageView).props().errorMsg
+            expect(component.find(InstantHomeView).props().errorMsg
                 .props.children).toEqual('Error uploading file to server');
             done();
         }, 500);
     });
 
-    it('passes loading component prop to InstantLandingPageView when ' +
+    it('passes loading component prop to InstantHomeView when ' +
         'state value loading is true', (done) => {
         component = mount(
             <Provider store={store}>
@@ -128,13 +127,13 @@ describe("InstantHome functional specification", () => {
         component.update();
 
         setTimeout(function () {
-            expect(component.find(InstantLandingPageView).props().loadingComponent
+            expect(component.find(InstantHomeView).props().loadingComponent
                 .props.children.type).toEqual(Loading);
             done();
         }, 500);
     });
 
-    it('passes logout message prop to InstantLandingPageView when ' +
+    it('passes logout message prop to InstantHomeView when ' +
         'props location state value logout is not undefined', (done) => {
         component = mount(
             <Provider store={store}>
@@ -145,13 +144,13 @@ describe("InstantHome functional specification", () => {
         );
 
         setTimeout(function () {
-            expect(component.find(InstantLandingPageView).props().logoutMessage
+            expect(component.find(InstantHomeView).props().logoutMessage
                 .props.children).toEqual('Successfully logged out');
             done();
         }, 500);
     });
 
-    it('passes FormLogin prop to InstantLandingPageView when ' +
+    it('passes FormLogin prop to InstantHomeView when ' +
         'state value login is true', (done) => {
         component = mount(
             <Provider store={store}>
@@ -165,13 +164,13 @@ describe("InstantHome functional specification", () => {
         component.update();
 
         setTimeout(function () {
-            expect(component.find(InstantLandingPageView).props().formLogin
+            expect(component.find(InstantHomeView).props().formLogin
                 .type).toEqual(FormLogin);
             done();
         }, 500);
     });
 
-    it('passes FormRegister prop to InstantLandingPageView when ' +
+    it('passes FormRegister prop to InstantHomeView when ' +
         'state value register is true', (done) => {
         component = mount(
             <Provider store={store}>
@@ -185,13 +184,13 @@ describe("InstantHome functional specification", () => {
         component.update();
 
         setTimeout(function () {
-            expect(component.find(InstantLandingPageView).props().formRegister
+            expect(component.find(InstantHomeView).props().formRegister
                 .type).toEqual(FormRegister);
             done();
         }, 500);
     });
 
-    it('passes imagePreview prop to InstantLandingPageView when ' +
+    it('passes imagePreview prop to InstantHomeView when ' +
         'state value imagePreviewUrl is true', (done) => {
         component = mount(
             <Provider store={store}>
@@ -205,14 +204,14 @@ describe("InstantHome functional specification", () => {
         component.update();
 
         setTimeout(function () {
-            expect(component.find(InstantLandingPageView).props().imagePreview
+            expect(component.find(InstantHomeView).props().imagePreview
                 .props.children.type).toEqual('img');
             done();
         }, 500);
     });
 
     it('passes submitLoading, fileChangedHandler, doLogin, doRegister functions ' +
-        'as props to InstantLandingPageView', () => {
+        'as props to InstantHomeView', () => {
         component = mount(
             <Provider store={store}>
                 <BrowserRouter>
@@ -221,13 +220,13 @@ describe("InstantHome functional specification", () => {
             </Provider>
         );
 
-        expect(component.find(InstantLandingPageView).props().submitLoading)
+        expect(component.find(InstantHomeView).props().submitLoading)
             .toEqual(component.find(InstantHome).instance().submitLoading);
-        expect(component.find(InstantLandingPageView).props().fileChangedHandler)
+        expect(component.find(InstantHomeView).props().fileChangedHandler)
             .toEqual(component.find(InstantHome).instance().fileChangedHandler);
-        expect(component.find(InstantLandingPageView).props().doLogin)
+        expect(component.find(InstantHomeView).props().doLogin)
             .toEqual(component.find(InstantHome).instance().doLogin);
-        expect(component.find(InstantLandingPageView).props().doRegister)
+        expect(component.find(InstantHomeView).props().doRegister)
             .toEqual(component.find(InstantHome).instance().doRegister);
     });
 

@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
 import '../../../css/App.css';
 import axios from 'axios';
-import AuthFailView from './views/AuthFailView';
 import AuthSuccessView from './views/AuthSuccessView';
-import AuthLogoutView from './views/AuthLogoutView';
 import { connect } from 'react-redux';
 import {setUsername} from '../../../redux/actions';
 
@@ -15,6 +13,8 @@ export class AuthSuccess extends Component {
             username: 0,
             redir: 0
         };
+
+        this.logout = this.logout.bind(this);
     }
 
     componentDidMount() {
@@ -38,7 +38,7 @@ export class AuthSuccess extends Component {
     render() {
         if (this.props.username===0) {
             return (
-                <AuthFailView/>
+                <AuthSuccessView/>
             );
         } else if (this.state.redir===0) {
             return (
@@ -47,7 +47,7 @@ export class AuthSuccess extends Component {
             );
         } else if (this.state.redir==='logout') {
             return (
-                <AuthLogoutView/>
+                <AuthSuccessView isLogout={true}/>
             );
         }
     }

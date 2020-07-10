@@ -1,7 +1,6 @@
 import React from 'react';
 import store from '../../../../src/redux/store';
 import {AuthResults} from "../../../../src/components/auth/Results/AuthResults";
-import AuthErrorView from "../../../../src/components/auth/Results/views/AuthErrorView";
 import AuthResultsView from "../../../../src/components/auth/Results/views/AuthResultsView";
 import {Provider} from "react-redux";
 import {configure} from 'enzyme';
@@ -29,7 +28,7 @@ describe("AuthResults functional specification", () => {
         component.unmount();
     });
 
-    it('renders AuthErrorView when props location state is undefined', () => {
+    it('renders AuthResultsView when props location state is undefined', () => {
         component = mount(
             <Provider store={store}>
                 <BrowserRouter>
@@ -38,7 +37,7 @@ describe("AuthResults functional specification", () => {
             </Provider>
         );
 
-        expect(component.find(AuthErrorView)).toHaveLength(1);
+        expect(component.find(AuthResultsView)).toHaveLength(1);
     });
 
     it('renders AuthResultsView when props location state prediction is correct',

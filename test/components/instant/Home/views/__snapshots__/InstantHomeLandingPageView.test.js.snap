@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`InstantHomeLandingPageView rendering specification InstantLandingPageView is rendered 1`] = `
+exports[`InstantHomeLandingPageView rendering specification InstantHomeView is rendered 1`] = `
 <div
   className="App"
 >

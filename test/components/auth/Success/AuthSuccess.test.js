@@ -1,8 +1,6 @@
 import React from 'react';
 import store from '../../../../src/redux/store';
 import {AuthSuccess} from "../../../../src/components/auth/Success/AuthSuccess";
-import AuthFailView from "../../../../src/components/auth/Success/views/AuthFailView";
-import AuthLogoutView from "../../../../src/components/auth/Success/views/AuthLogoutView";
 import AuthSuccessView from "../../../../src/components/auth/Success/views/AuthSuccessView";
 import {Provider} from "react-redux";
 import {configure} from 'enzyme';
@@ -23,7 +21,7 @@ describe("AuthSuccess functional specification", () => {
         component.unmount();
     });
 
-    it('renders AuthFailView when props value username equals 0', () => {
+    it('renders AuthSuccessView when props value username equals 0', () => {
         component = mount(
             <Provider store={store}>
                 <BrowserRouter>
@@ -32,7 +30,7 @@ describe("AuthSuccess functional specification", () => {
             </Provider>
         );
 
-        expect(component.find(AuthFailView)).toHaveLength(1);
+        expect(component.find(AuthSuccessView)).toHaveLength(1);
     });
 
     it('renders AuthSuccessView when state value redir equals 0',
@@ -54,7 +52,7 @@ describe("AuthSuccess functional specification", () => {
         }, 500);
     });
 
-    it('renders AuthLogoutView when state value redir equals "logout"',
+    it('renders AuthSuccessView when state value redir equals "logout"',
         (done) => {
             component = mount(
                 <Provider store={store}>
@@ -68,7 +66,7 @@ describe("AuthSuccess functional specification", () => {
             component.update();
 
             setTimeout(function () {
-                expect(component.find(AuthLogoutView)).toHaveLength(1);
+                expect(component.find(AuthSuccessView)).toHaveLength(1);
                 done();
             }, 500);
         });

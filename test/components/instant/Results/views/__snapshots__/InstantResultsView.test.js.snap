@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`InstantResultsErrorView rendering specification InstantResultsErrorView is rendered 1`] = `
+exports[`InstantResultsView rendering specification InstantResultsView is rendered 1`] = `
 <div
   className="App"
 >

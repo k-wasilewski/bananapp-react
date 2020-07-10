@@ -3,8 +3,7 @@ import '../../../css/App.css';
 import {FormRegister} from '../../form/FormRegister';
 import {FormLogin} from '../../form/FormLogin';
 import Loading from '../../LoadingComponent';
-import InstantLandingPageView from './views/InstantLandingPageView';
-import InstantHomeRedirectView from './views/InstantHomeRedirectView';
+import InstantHomeView from './views/InstantHomeView';
 
 class InstantHome extends Component {
     constructor(props) {
@@ -65,9 +64,7 @@ class InstantHome extends Component {
         }
 
         const reader = new FileReader();
-
         reader.onloadend = () => this.setImagePreview(reader.result);
-
         reader.readAsDataURL(event.target.files[0]);
     }
 
@@ -90,11 +87,9 @@ class InstantHome extends Component {
 
         if (this.state.selectedFile!==null) {
             const fd = new FormData();
-
             fd.append('file', this.state.selectedFile);
 
             const request = new XMLHttpRequest();
-
             request.onload = function() {
                 const response = request.response.trim();
 
@@ -104,7 +99,6 @@ class InstantHome extends Component {
                     $this.setState({
                         prediction: JSON.parse(response),
                         redirect: true
-                    }, function () {
                     });
                 }
             }
@@ -123,11 +117,11 @@ class InstantHome extends Component {
         const imagePreview = (!this.state.imagePreviewUrl) ?
             (<div className='previewText image-container'>
                     Select a jpg image (max filesize 1 MB) to check your banana
-                </div>)
+            </div>)
             :
             (<div className='image-container' >
                     <img src={this.state.imagePreviewUrl} alt='icon' width='200' />
-                </div>);
+            </div>);
 
         const formRegister = ( this.state.register ) ?
             (<FormRegister />)
@@ -143,29 +137,30 @@ class InstantHome extends Component {
 
         const loadingComponent = (this.state.loading) ?
             (<div>
-                    <Loading/>
-                </div>)
-            : (<div />);
+                <Loading/>
+            </div>)
+            :
+            (<div />);
 
         const errorMsg = (this.state.error) ?
             (<div>Error uploading file to server</div>) : (<div/>);
 
         if (!this.state.redirect) {
             return (
-                <InstantLandingPageView doRegister={this.doRegister}
-                                        doLogin={this.doLogin}
-                                        fileChangedHandler={this.fileChangedHandler}
-                                        submitLoading={this.submitLoading}
-                                        logoutMessage={logoutMessage}
-                                        formRegister={formRegister}
-                                        formLogin={formLogin}
-                                        loadingComponent={loadingComponent}
-                                        errorMsg={errorMsg}
-                                        imagePreview={imagePreview}/>
+                <InstantHomeView doRegister={this.doRegister}
+                                 doLogin={this.doLogin}
+                                 fileChangedHandler={this.fileChangedHandler}
+                                 submitLoading={this.submitLoading}
+                                 logoutMessage={logoutMessage}
+                                 formRegister={formRegister}
+                                 formLogin={formLogin}
+                                 loadingComponent={loadingComponent}
+                                 errorMsg={errorMsg}
+                                 imagePreview={imagePreview}/>
             );
         } else if (this.state.redirect || !this.state.error) {
             return (
-                <InstantHomeRedirectView prediction={this.state.prediction}
+                <InstantHomeView prediction={this.state.prediction}
                                          img={this.state.imagePreviewUrl}/>
             );
         }

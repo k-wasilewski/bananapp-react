@@ -1,8 +1,7 @@
 import React from 'react';
 import store from '../../../../src/redux/store';
-import AuthHome from "../../../../src/components/auth/Home/AuthHome";
-import AuthRedirectResultsView from "../../../../src/components/auth/Home/views/AuthRedirectResultsView";
-import AuthLandingPageView from "../../../../src/components/auth/Home/views/AuthLandingPageView";
+import {AuthHome} from "../../../../src/components/auth/Home/AuthHome";
+import AuthHomeView from "../../../../src/components/auth/Home/views/AuthHomeView";
 import {Provider} from "react-redux";
 import {configure} from 'enzyme';
 import Adapter from "enzyme-adapter-react-16";
@@ -54,7 +53,7 @@ describe("AuthHome functional specification", () => {
         console.error = error;
     });
 
-    it('renders AuthLandingPageView when state value redirect is false', (done) => {
+    it('renders AuthHomeView when state value redirect is false', (done) => {
         component = mount(
             <Provider store={store}>
                 <BrowserRouter>
@@ -67,12 +66,12 @@ describe("AuthHome functional specification", () => {
         component.update();
 
         setTimeout(function () {
-            expect(component.find(AuthLandingPageView)).toHaveLength(1);
+            expect(component.find(AuthHomeView)).toHaveLength(1);
             done();
         }, 500);
     });
 
-    it('renders AuthRedirectResultsView when state value redirect is true',
+    it('renders AuthHomeView when state value redirect is true',
         (done) => {
         component = mount(
             <Provider store={store}>
@@ -86,12 +85,12 @@ describe("AuthHome functional specification", () => {
         component.update();
 
         setTimeout(function () {
-            expect(component.find(AuthRedirectResultsView)).toHaveLength(1);
+            expect(component.find(AuthHomeView)).toHaveLength(1);
             done();
         }, 500);
     });
 
-    it('passes error msg prop to AuthLandingPageView when state value' +
+    it('passes error msg prop to AuthHomeView when state value' +
         ' error is true', (done) => {
         component = mount(
             <Provider store={store}>
@@ -105,13 +104,13 @@ describe("AuthHome functional specification", () => {
         component.update();
 
         setTimeout(function () {
-            expect(component.find(AuthLandingPageView).props().errorMsg
+            expect(component.find(AuthHomeView).props().errorMsg
                 .props.children).toEqual('Error uploading file to server');
             done();
         }, 500);
     });
 
-    it('passes loading component prop to AuthLandingPageView when ' +
+    it('passes loading component prop to AuthHomeView when ' +
         'state value loading is true', (done) => {
         component = mount(
             <Provider store={store}>
@@ -125,13 +124,13 @@ describe("AuthHome functional specification", () => {
         component.update();
 
         setTimeout(function () {
-            expect(component.find(AuthLandingPageView).props().loadingComponent.type)
+            expect(component.find(AuthHomeView).props().loadingComponent.type)
                 .toEqual(Loading);
             done();
         }, 500);
     });
 
-    it('passes imagePreview prop to AuthLandingPageView when ' +
+    it('passes imagePreview prop to AuthHomeView when ' +
         'state value imagePreviewUrl is true', (done) => {
         component = mount(
             <Provider store={store}>
@@ -145,14 +144,14 @@ describe("AuthHome functional specification", () => {
         component.update();
 
         setTimeout(function () {
-            expect(component.find(AuthLandingPageView).props().$imagePreview
+            expect(component.find(AuthHomeView).props().$imagePreview
                 .props.children.type).toEqual('img');
             done();
         }, 500);
     });
 
     it('passes submitLoading, fileChangedHandler functions ' +
-        'as props to AuthLandingPageView', () => {
+        'as props to AuthHomeView', () => {
         component = mount(
             <Provider store={store}>
                 <BrowserRouter>
@@ -161,13 +160,13 @@ describe("AuthHome functional specification", () => {
             </Provider>
         );
 
-        expect(component.find(AuthHome).props().submitLoading)
-            .toEqual(component.find(AuthLandingPageView).instance().submitLoading);
-        expect(component.find(AuthHome).props().fileChangedHandler)
-            .toEqual(component.find(AuthLandingPageView).instance().fileChangedHandler);
+        expect(component.find(AuthHomeView).props().submitLoading)
+            .toEqual(component.find(AuthHome).instance().submitLoading);
+        expect(component.find(AuthHomeView).props().fileChangedHandler)
+            .toEqual(component.find(AuthHome).instance().fileChangedHandler);
     });
 
-    it('passes prediction, img, username props to AuthRedirectResultsView',
+    it('passes prediction, img props to AuthHomeView',
         (done) => {
         const mockPrediction = 'mock prediction';
         const mockImg = 'mock img';
@@ -176,7 +175,7 @@ describe("AuthHome functional specification", () => {
         component = mount(
             <Provider store={store}>
                 <BrowserRouter>
-                    <AuthHome username={mockUsername}/>
+                    <AuthHome />
                 </BrowserRouter>
             </Provider>
         );
@@ -187,12 +186,10 @@ describe("AuthHome functional specification", () => {
         component.update();
 
         setTimeout(function () {
-            expect(component.find(AuthRedirectResultsView).props().prediction)
+            expect(component.find(AuthHomeView).props().prediction)
                 .toEqual(mockPrediction);
-            expect(component.find(AuthRedirectResultsView).props().img)
+            expect(component.find(AuthHomeView).props().img)
                 .toEqual(mockImg);
-            expect(component.find(AuthRedirectResultsView).props().username)
-                .toEqual(mockUsername);
             done();
         }, 500);
     });

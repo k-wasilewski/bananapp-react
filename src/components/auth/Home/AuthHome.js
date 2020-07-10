@@ -1,9 +1,9 @@
 import React from 'react';
 import Loading from '../../LoadingComponent';
-import AuthLandingPageView from './views/AuthLandingPageView';
-import AuthRedirectResultsView from './views/AuthRedirectResultsView';
+import AuthHomeView from './views/AuthHomeView';
+import {connect} from "react-redux";
 
-class AuthHome extends React.Component {
+export class AuthHome extends React.Component {
     constructor(props) {
         super(props);
 
@@ -84,9 +84,7 @@ class AuthHome extends React.Component {
         }
 
         const reader = new FileReader();
-
         reader.onloadend = () => this.setImagePreview(reader.result);
-
         reader.readAsDataURL(event.target.files[0]);
     }
 
@@ -109,20 +107,25 @@ class AuthHome extends React.Component {
 
         if (!this.state.redirect) {
             return (
-                <AuthLandingPageView fileChangedHandler={this.fileChangedHandler}
-                                     submitLoading={this.submitLoading}
-                                     loadingComponent={loadingComponent}
-                                     errorMsg={errorMsg}
-                                     $imagePreview={$imagePreview}/>
+                <AuthHomeView fileChangedHandler={this.fileChangedHandler}
+                              submitLoading={this.submitLoading}
+                              loadingComponent={loadingComponent}
+                              errorMsg={errorMsg}
+                              $imagePreview={$imagePreview}/>
             );
         } else {
             return (
-                <AuthRedirectResultsView prediction={this.state.prediction}
-                                         img={this.state.imagePreviewUrl}
-                                         username={this.props.username}/>
+                <AuthHomeView prediction={this.state.prediction}
+                                         img={this.state.imagePreviewUrl}/>
             );
         }
     }
 }
 
-export default AuthHome;
+function mapStateToProps(state) {
+    return {
+        username: state.setUsernameReducer.username,
+    };
+};
+
+export default connect(mapStateToProps, null)(AuthHome);
