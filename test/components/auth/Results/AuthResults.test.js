@@ -143,4 +143,37 @@ describe("AuthResults functional specification", () => {
             done();
         }, 500);
     });
+
+    it('saveimg() invokes console.error if there is one at server', (done) => {
+        const mockPrediction = {score: 1.0, accuracy: 1.0, filename: 'mock.jpg'};
+        const mockImg = 'mock img';
+        const mockUsername = 'mock username';
+
+        const score = mockPrediction.score;
+        const accuracy = mockPrediction.accuracy;
+        const filename = mockPrediction.filename;
+        const username = mockUsername;
+        const img = mockImg;
+
+        mock.onPost('http://localhost:8081/auth/saveimg',
+            `filename=${filename}&score=${score}&acc=${accuracy}
+            &uname=${username}&link=${img.split('+').join('plussign')}`)
+            .networkError();
+
+        const consoleError = jest.spyOn(console, 'error');
+
+        component = mount(
+            <Provider store={store}>
+                <BrowserRouter>
+                    <AuthResults location={{state: {prediction: mockPrediction,
+                            img: mockImg}}} username={mockUsername}/>
+                </BrowserRouter>
+            </Provider>
+        );
+
+        setTimeout(function () {
+            expect(consoleError).toHaveBeenCalled();
+            done();
+        }, 500);
+    });
 });
