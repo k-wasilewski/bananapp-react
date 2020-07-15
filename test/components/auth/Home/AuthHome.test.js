@@ -351,12 +351,13 @@ describe("AuthHome functional specification", () => {
     });
 
     it('fileChangedHandler(event) sets state value selectedFile as ' +
-        'event.target.files[0]', (done) => {
+        'event.target.files[0] if event.target.files[0].size<=1024*1024', (done) => {
         jest.spyOn(global, "FileReader")
             .mockImplementation(function() {
                 this.readAsDataURL = jest.fn();
             });
         const mockedEvent = {target: {files: [{size: 2000}]}};
+        const mockedEventError = {target: {files: [{size: 2000*2000}]}};
 
         component = mount(
             <Provider store={store}>
@@ -372,7 +373,15 @@ describe("AuthHome functional specification", () => {
         setTimeout(function () {
             expect(component.find(AuthHome).state().selectedFile)
                 .toEqual({size: 2000});
-            done();
+
+            component.find(AuthHome).instance().fileChangedHandler(mockedEventError);
+            component.update();
+            setTimeout(function () {
+                expect(component.find(AuthHome).state().selectedFile)
+                    .toEqual(null);
+
+                done();
+            }, 500);
         }, 500);
     });
 
