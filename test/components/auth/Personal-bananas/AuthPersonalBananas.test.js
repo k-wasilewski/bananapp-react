@@ -258,7 +258,8 @@ describe("AuthPersonalBananas functional specification", () => {
     });
 
     it('deleteImage() deletes state value currentImage from state value ' +
-        'IMAGES and sends request to server', (done) => {
+        'IMAGES and sends request to server and sets state value ' +
+        'shouldGalleryOpen to false if IMAGES.length is 0', (done) => {
         global.confirm = () => true;
 
         let mockImages = [];
@@ -286,7 +287,15 @@ describe("AuthPersonalBananas functional specification", () => {
         setTimeout(function () {
             expect(component.find(AuthPersonalBananas).state().IMAGES)
                 .toEqual([mockImg1]);
-            done();
+
+            component.find(AuthPersonalBananas).instance().deleteImage();
+            component.update();
+
+            setTimeout(function () {
+                expect(component.find(AuthPersonalBananas).state().shouldGalleryOpen)
+                    .toEqual(false);
+                done();
+            }, 500);
         }, 500);
     });
 
