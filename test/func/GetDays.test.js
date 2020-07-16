@@ -9,5 +9,6 @@ describe("GetDays functional specification", () => {
         expect(GetDays(5.0)).toBe('5 days');
         expect(GetDays(6.0)).toBe('6 days');
         expect(GetDays(7.0)).toBe('7 days');
+        expect(GetDays('7.0')).toBe('[error]');
     });
 });
