@@ -2,18 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './css/index.css';
 import App from './App';
-import * as serviceWorker from './serviceWorker';
-import { BrowserRouter } from 'react-router-dom';
-import store from './redux/store';
-import { Provider } from 'react-redux';
+import { StoreProvider } from './StoreContext';
+import { RootStore } from './stores/RootStore';
+
+//RootStore can be passed to App as a prop as well
 
 ReactDOM.render((
-    <Provider store={store}>
-        <BrowserRouter>
-            <App />
-        </BrowserRouter>
-    </Provider>
+    <StoreProvider value={new RootStore()} >    
+        <App />
+    </StoreProvider>
     ), document.getElementById('root')
 );
-
-serviceWorker.unregister();
