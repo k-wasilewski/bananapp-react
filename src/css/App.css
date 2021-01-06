@@ -61,23 +61,3 @@
   font-size: 0.8rem;
   padding: 0;
 }
-
-.holder {
-    background: #ccc;
-    padding: 0.5rem;
-    overflow: hidden;
-}
-
-.news {
-    animation: slide 10s linear infinite;
-}
-
-@keyframes slide {
-    0% {
-        transform: translatex(0%)
-    }
-
-    100% {
-        transform: translatex(100%)
-    }
-}

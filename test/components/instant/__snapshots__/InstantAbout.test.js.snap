@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InstantAbout rendering specification InstantAbout is rendered 1`] = `
+<div
+  className="App"
+>
+  <header
+    className="App-header"
+  >
+    <div
+      className="col-13 text-left"
+    >
+      <h5>
+        Kuba Wasilewski 
+        <br />
+        <a
+          href="https://github.com/k-wasilewski"
+        >
+          @k-wasilewski 
+        </a>
+        <br />
+        <a
+          className="nav-link color-header"
+          href="mailto:k.k.wasilewski@gmail.com"
+        >
+          k.k.wasilewski@gmail.com
+        </a>
+      </h5>
+    </div>
+    <a
+      href="/"
+      onClick={[Function]}
+    >
+      <button
+        variant="outlined"
+      >
+        Back
+      </button>
+    </a>
+  </header>
+</div>
+`;
